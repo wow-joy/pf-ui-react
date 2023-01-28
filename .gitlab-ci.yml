@@ -1,6 +1,6 @@
 variables:
   DOCKER_TLS_CERTDIR: ""
-  PROJECT_NAME: "pf-ui-vue"
+  PROJECT_NAME: "pf-ui-react"
   GIT_CLEAN_FLAGS: "none"
   IMAGE_ENV: "platform"
   # IMAGE_ENV: "lichen"
