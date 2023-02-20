@@ -1,7 +1,7 @@
 // TODO: 4.0 - codemod should help to change `filterOption` to support node props.
 import classNames from 'classnames';
+import type { BaseSelectRef, SelectProps as RcSelectProps } from 'rc-select';
 import RcSelect, { OptGroup, Option } from 'rc-select';
-import type { SelectProps as RcSelectProps, BaseSelectRef } from 'rc-select';
 import type { OptionProps } from 'rc-select/lib/Option';
 import type { BaseOptionType, DefaultOptionType } from 'rc-select/lib/Select';
 import omit from 'rc-util/lib/omit';
@@ -18,10 +18,10 @@ import type { InputStatus } from '../_util/statusUtils';
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils';
 import getIcons from './utils/iconUtil';
 
-import useStyle from './style';
+import { useCompactItemContext } from '../space/Compact';
 import genPurePanel from '../_util/PurePanel';
 import warning from '../_util/warning';
-import { useCompactItemContext } from '../space/Compact';
+import useStyle from './style';
 
 type RawValue = string | number;
 
@@ -59,6 +59,7 @@ export interface SelectProps<
   popupClassName?: string;
   /** @deprecated Please use `popupClassName` instead */
   dropdownClassName?: string;
+  rootClassName?: string;
 }
 
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
@@ -68,6 +69,7 @@ const InternalSelect = <OptionType extends BaseOptionType | DefaultOptionType = 
     prefixCls: customizePrefixCls,
     bordered = true,
     className,
+    rootClassName,
     getPopupContainer,
     popupClassName,
     dropdownClassName,
@@ -154,6 +156,7 @@ const InternalSelect = <OptionType extends BaseOptionType | DefaultOptionType = 
     {
       [`${prefixCls}-dropdown-${direction}`]: direction === 'rtl',
     },
+    rootClassName,
     hashId,
   );
 
@@ -174,17 +177,16 @@ const InternalSelect = <OptionType extends BaseOptionType | DefaultOptionType = 
     getStatusClassNames(prefixCls, mergedStatus, hasFeedback),
     compactItemClassnames,
     className,
+    rootClassName,
     hashId,
   );
 
   // ===================== Placement =====================
-  const getPlacement = () => {
+  const getPlacement = (): SelectCommonPlacement => {
     if (placement !== undefined) {
       return placement;
     }
-    return direction === 'rtl'
-      ? ('bottomRight' as SelectCommonPlacement)
-      : ('bottomLeft' as SelectCommonPlacement);
+    return direction === 'rtl' ? 'bottomRight' : 'bottomLeft';
   };
 
   // ====================== Warning ======================

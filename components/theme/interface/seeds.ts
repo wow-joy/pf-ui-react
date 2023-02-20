@@ -50,7 +50,7 @@ export interface SeedToken extends PresetColorType {
   /**
    * @nameZH 基础文本色
    * @nameEN Seed Text Color
-   * @desc 用于派生文本色梯度的基础变量，v5 中我们添加了一层文本色的派生算法可以产出梯度明确的文本色的梯度变量。但**请不要在代码中直接使用该 Seed Token**！
+   * @desc 用于派生文本色梯度的基础变量，v5 中我们添加了一层文本色的派生算法可以产出梯度明确的文本色的梯度变量。但请不要在代码中直接使用该 Seed Token ！
    * @descEN Used to derive the base variable of the text color gradient. In v5, we added a layer of text color derivation algorithm to produce gradient variables of text color gradient. But please do not use this Seed Token directly in the code!
    */
   colorTextBase: string;
@@ -58,7 +58,7 @@ export interface SeedToken extends PresetColorType {
   /**
    * @nameZH 基础背景色
    * @nameEN Seed Background Color
-   * @desc 用于派生背景色梯度的基础变量，v5 中我们添加了一层背景色的派生算法可以产出梯度明确的背景色的梯度变量。但 **请不要在代码中直接使用该 Seed Token** ！
+   * @desc 用于派生背景色梯度的基础变量，v5 中我们添加了一层背景色的派生算法可以产出梯度明确的背景色的梯度变量。但请不要在代码中直接使用该 Seed Token ！
    * @descEN Used to derive the base variable of the background color gradient. In v5, we added a layer of background color derivation algorithm to produce map token of background color. But PLEASE DO NOT USE this Seed Token directly in the code!
    */
   colorBgBase: string;
@@ -67,10 +67,17 @@ export interface SeedToken extends PresetColorType {
 
   /**
    * @nameZH 字体
-   * @nameEN FontFamily
+   * @nameEN Font family for default text
    * @desc Ant Design 的字体家族中优先使用系统默认的界面字体，同时提供了一套利于屏显的备用字体库，来维护在不同平台以及浏览器的显示下，字体始终保持良好的易读性和可读性，体现了友好、稳定和专业的特性。
    */
   fontFamily: string;
+
+  /**
+   * @nameZH 代码字体
+   * @nameEN Font family for code text
+   * @desc 代码字体，用于 Typography 内的 code、pre 和 kbd 类型的元素
+   */
+  fontFamilyCode: string;
 
   /**
    * @nameZH 默认字号
