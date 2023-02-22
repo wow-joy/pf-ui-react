@@ -22,3 +22,4 @@ coverage
 # Scripts
 scripts/previewEditor/**/*
 jest-stare
+scripts/antd-tools/*.js

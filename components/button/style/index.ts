@@ -5,6 +5,7 @@ import genGroupStyle from './group';
 import { genFocusStyle } from '../../style';
 import { genCompactItemStyle } from '../../style/compact-item';
 import { genCompactItemVerticalStyle } from '../../style/compact-item-vertical';
+import cssVariables from '../../theme/cssVariables';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {}
@@ -13,6 +14,21 @@ export interface ButtonToken extends FullToken<'Button'> {
   // FIXME: should be removed
   colorOutlineDefault: string;
   buttonPaddingHorizontal: number;
+  colorPrimary: string;
+  colorPrimaryHover: string;
+  colorPrimaryActive: string;
+  textColorPrimary: string;
+  colorDefault: string;
+  colorDefaultHover: string;
+  colorDefaultActive: string;
+  borderColorDefault: string;
+  borderColorDefaultHoverActive: string;
+  textColorDefault: string;
+  colorSecondary: string;
+  colorSecondaryHover: string;
+  colorSecondaryActive: string;
+  borderColorSecondary: string;
+  textColorSecondary: string;
 }
 
 // ============================== Shared ==============================
@@ -185,26 +201,27 @@ const genPureDisabledButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token
 const genDefaultButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => ({
   ...genSolidButtonStyle(token),
 
-  backgroundColor: token.colorBgContainer,
-  borderColor: token.colorBorder,
+  backgroundColor: token.colorDefault,
+  borderColor: token.borderColorDefault,
+  color: token.textColorDefault,
 
   boxShadow: `0 ${token.controlOutlineWidth}px 0 ${token.controlTmpOutline}`,
 
   ...genHoverActiveButtonStyle(
     {
-      color: token.colorPrimaryHover,
-      borderColor: token.colorPrimaryHover,
+      backgroundColor: token.colorDefaultHover,
+      borderColor: token.borderColorDefaultHoverActive,
     },
     {
-      color: token.colorPrimaryActive,
-      borderColor: token.colorPrimaryActive,
+      backgroundColor: token.colorDefaultActive,
+      borderColor: token.borderColorDefaultHoverActive,
     },
   ),
 
   ...genGhostButtonStyle(
     token.componentCls,
-    token.colorBgContainer,
-    token.colorBgContainer,
+    token.colorDefault,
+    token.colorDefault,
     token.colorTextDisabled,
     token.colorBorder,
   ),
@@ -239,18 +256,16 @@ const genDefaultButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => 
 const genPrimaryButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => ({
   ...genSolidButtonStyle(token),
 
-  color: token.colorTextLightSolid,
+  color: token.textColorPrimary,
   backgroundColor: token.colorPrimary,
 
   boxShadow: `0 ${token.controlOutlineWidth}px 0 ${token.controlOutline}`,
 
   ...genHoverActiveButtonStyle(
     {
-      color: token.colorTextLightSolid,
       backgroundColor: token.colorPrimaryHover,
     },
     {
-      color: token.colorTextLightSolid,
       backgroundColor: token.colorPrimaryActive,
     },
   ),
@@ -298,6 +313,59 @@ const genPrimaryButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => 
         color: token.colorErrorActive,
         borderColor: token.colorErrorActive,
       },
+    ),
+    ...genSolidDisabledButtonStyle(token),
+  },
+});
+
+// Type: Secondary
+const genSecondaryButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => ({
+  ...genSolidButtonStyle(token),
+
+  backgroundColor: token.colorSecondary,
+  borderColor: token.borderColorSecondary,
+  color: token.textColorSecondary,
+
+  boxShadow: `0 ${token.controlOutlineWidth}px 0 ${token.controlTmpOutline}`,
+
+  ...genHoverActiveButtonStyle(
+    {
+      backgroundColor: token.colorSecondaryHover,
+    },
+    {
+      backgroundColor: token.colorSecondaryActive,
+    },
+  ),
+
+  ...genGhostButtonStyle(
+    token.componentCls,
+    token.colorBgContainer,
+    token.colorBgContainer,
+    token.colorTextDisabled,
+    token.colorBorder,
+  ),
+
+  [`&${token.componentCls}-dangerous`]: {
+    color: token.colorError,
+    borderColor: token.colorError,
+
+    ...genHoverActiveButtonStyle(
+      {
+        color: token.colorErrorHover,
+        borderColor: token.colorErrorBorderHover,
+      },
+      {
+        color: token.colorErrorActive,
+        borderColor: token.colorErrorActive,
+      },
+    ),
+
+    ...genGhostButtonStyle(
+      token.componentCls,
+      token.colorError,
+      token.colorError,
+      token.colorTextDisabled,
+      token.colorBorder,
     ),
     ...genSolidDisabledButtonStyle(token),
   },
@@ -390,6 +458,7 @@ const genTypeButtonStyle: GenerateStyle<ButtonToken> = (token) => {
     [`${componentCls}-link`]: genLinkButtonStyle(token),
     [`${componentCls}-text`]: genTextButtonStyle(token),
     [`${componentCls}-disabled`]: genDisabledButtonStyle(token),
+    [`${componentCls}-secondary`]: genSecondaryButtonStyle(token),
   };
 };
 
@@ -405,6 +474,7 @@ const genSizeButtonStyle = (token: ButtonToken, sizePrefixCls: string = ''): CSS
     borderRadius,
     buttonPaddingHorizontal,
   } = token;
+  console.log('borderRadius', borderRadius);
 
   const paddingVertical = Math.max(0, (controlHeight - fontSize * lineHeight) / 2 - lineWidth);
   const paddingHorizontal = buttonPaddingHorizontal - lineWidth;
@@ -464,8 +534,9 @@ const genSizeSmallButtonStyle: GenerateStyle<ButtonToken> = (token) => {
   const smallToken = mergeToken<ButtonToken>(token, {
     controlHeight: token.controlHeightSM,
     padding: token.paddingXS,
-    buttonPaddingHorizontal: 8, // Fixed padding
-    borderRadius: token.borderRadiusSM,
+    buttonPaddingHorizontal: 12, // Fixed padding
+    fontSize: token.fontSizeSM,
+    // borderRadius: token.borderRadiusSM,
   });
 
   return genSizeButtonStyle(smallToken, `${token.componentCls}-sm`);
@@ -474,8 +545,9 @@ const genSizeSmallButtonStyle: GenerateStyle<ButtonToken> = (token) => {
 const genSizeLargeButtonStyle: GenerateStyle<ButtonToken> = (token) => {
   const largeToken = mergeToken<ButtonToken>(token, {
     controlHeight: token.controlHeightLG,
-    fontSize: token.fontSizeLG,
-    borderRadius: token.borderRadiusLG,
+    buttonPaddingHorizontal: 20,
+    // fontSize: token.fontSizeLG,
+    // borderRadius: token.borderRadiusLG,
   });
 
   return genSizeButtonStyle(largeToken, `${token.componentCls}-lg`);
@@ -492,13 +564,36 @@ const genBlockButtonStyle: GenerateStyle<ButtonToken> = (token) => {
   };
 };
 
+// custom token
+const CustomToken = {
+  borderRadius: 3,
+  controlHeightSM: 26,
+  controlHeightLG: 36,
+  colorPrimary: cssVariables.colorPrimary,
+  colorPrimaryHover: cssVariables.WjA1_2,
+  colorPrimaryActive: cssVariables.WjA1_3,
+  textColorPrimary: cssVariables.WjC1,
+  colorDefault: cssVariables.WjC6,
+  colorDefaultHover: cssVariables.WjC1,
+  colorDefaultActive: cssVariables.WjC6,
+  borderColorDefault: cssVariables.WjC9,
+  borderColorDefaultHoverActive: cssVariables.WjE4,
+  textColorDefault: cssVariables.WjE2,
+  colorSecondary: cssVariables.WjC1,
+  colorSecondaryHover: cssVariables.WjA1_4,
+  colorSecondaryActive: cssVariables.WjA1_5,
+  borderColorSecondary: cssVariables.WjA1_1,
+  textColorSecondary: cssVariables.WjA1_1,
+};
+
 // ============================== Export ==============================
 export default genComponentStyleHook('Button', (token) => {
   const { controlTmpOutline, paddingContentHorizontal } = token;
 
   const buttonToken = mergeToken<ButtonToken>(token, {
     colorOutlineDefault: controlTmpOutline,
-    buttonPaddingHorizontal: paddingContentHorizontal,
+    buttonPaddingHorizontal: 14,
+    ...CustomToken,
   });
 
   return [

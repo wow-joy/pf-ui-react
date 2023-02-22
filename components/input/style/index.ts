@@ -4,6 +4,7 @@ import { genCompactItemStyle } from '../../style/compact-item';
 import type { GlobalToken } from '../../theme/interface';
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
+import cssVariables from '../../theme/cssVariables';
 
 export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputAffixPadding: number;
@@ -15,6 +16,7 @@ export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputPaddingHorizontalSM: number;
   inputBorderHoverColor: string;
   inputBorderActiveColor: string;
+  searchBtnPaddingHorizontal: number;
 };
 
 export const genPlaceholderStyle = (color: string): CSSObject => ({
@@ -544,6 +546,7 @@ const genAllowClearStyle = (token: InputToken): CSSObject => {
       margin: 0,
       color: token.colorTextQuaternary,
       fontSize: token.fontSizeIcon,
+      lineHeight: `${token.fontSizeIcon}px`,
       verticalAlign: -1,
       // https://github.com/ant-design/ant-design/pull/18151
       // https://codesandbox.io/s/wizardly-sun-u10br
@@ -761,6 +764,8 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
           [`${searchPrefixCls}-button`]: {
             paddingTop: 0,
             paddingBottom: 0,
+            paddingLeft: token.searchBtnPaddingHorizontal - token.lineWidth,
+            paddingRight: token.searchBtnPaddingHorizontal - token.lineWidth,
             borderStartStartRadius: 0,
             borderStartEndRadius: token.borderRadius,
             borderEndEndRadius: token.borderRadius,
@@ -815,6 +820,8 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
             [`${componentCls}-search-button`]: {
               marginInlineEnd: -token.lineWidth,
               borderRadius: 0,
+              paddingLeft: 8,
+              paddingRight: 8,
             },
           },
         },
@@ -946,9 +953,24 @@ const genTextAreaStyle: GenerateStyle<InputToken> = (token) => {
   };
 };
 
+// custom token
+const customToken = {
+  colorPrimaryHover: cssVariables.WjD1,
+  inputBorderHoverColor: cssVariables.WjD1,
+  colorBorder: cssVariables.WjC7,
+  borderRadius: 3,
+  borderRadiusLG: 3,
+  borderRadiusSM: 3,
+  searchBtnPaddingHorizontal: 8,
+  fontSizeIcon: 16,
+  inputPaddingHorizontal: 9,
+};
+
 // ============================== Export ==============================
 export default genComponentStyleHook('Input', (token) => {
-  const inputToken = initInputToken<FullToken<'Input'>>(token);
+  const _inputToken = initInputToken<FullToken<'Input'>>(token);
+
+  const inputToken = mergeToken<InputToken>(_inputToken, customToken);
 
   return [
     genInputStyle(inputToken),

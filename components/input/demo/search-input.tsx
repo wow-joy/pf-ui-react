@@ -26,7 +26,7 @@ const App: React.FC = () => (
       onSearch={onSearch}
       style={{ width: 304 }}
     />
-    <Search placeholder="input search text" onSearch={onSearch} enterButton />
+    <Search placeholder="input search text" onSearch={onSearch} enterButton allowClear />
     <Search
       placeholder="input search text"
       allowClear

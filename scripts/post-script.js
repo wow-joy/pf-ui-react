@@ -55,9 +55,9 @@ const SAFE_DAYS_DIFF = 1000 * 60 * 60 * 24 * 3; // 3 days not update seems to be
   //   return;
   // }
 
-  const { time, 'dist-tags': distTags } = await fetch('http://registry.npmjs.org/antd').then(
-    (res) => res.json(),
-  );
+  const { time, 'dist-tags': distTags } = await fetch(
+    'http://registry.npmjs.org/@pf-ui/pf-ui-react',
+  ).then((res) => res.json());
 
   console.log('🐚 Latest Conch Version:', chalk.green(distTags[CONCH_TAG] || 'null'), '\n');
 
