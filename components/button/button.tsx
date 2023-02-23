@@ -39,6 +39,7 @@ export interface BaseButtonProps {
   danger?: boolean;
   block?: boolean;
   children?: React.ReactNode;
+  minWidth?: string | number;
 }
 
 export type AnchorButtonProps = {
@@ -107,8 +108,15 @@ const InternalButton: React.ForwardRefRenderFunction<
     block = false,
     // React does not recognize the `htmlType` prop on a DOM element. Here we pick it out of `rest`.
     htmlType = 'button',
+    minWidth,
     ...rest
   } = props;
+
+  if (typeof minWidth === 'string') {
+    rest.style = { ...rest.style, minWidth };
+  } else if (typeof minWidth === 'number') {
+    rest.style = { ...rest.style, minWidth: `${minWidth}px` };
+  }
 
   const { getPrefixCls, autoInsertSpaceInButton, direction } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls('btn', customizePrefixCls);

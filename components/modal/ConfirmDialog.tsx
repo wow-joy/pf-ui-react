@@ -23,6 +23,11 @@ interface ConfirmDialogProps extends ModalFuncProps {
   locale?: ModalLocale;
 }
 
+const defaultButtonProps: ConfirmDialogProps['okButtonProps'] = {
+  minWidth: 90,
+  size: 'small',
+};
+
 export function ConfirmContent(
   props: ConfirmDialogProps & {
     confirmPrefixCls: string;
@@ -81,6 +86,9 @@ export function ConfirmContent(
 
   const autoFocusButton = props.autoFocusButton === null ? false : props.autoFocusButton || 'ok';
 
+  const mergedOkButtonProps = { ...defaultButtonProps, ...okButtonProps };
+  const mergedCancelButtonProps = { ...defaultButtonProps, ...cancelButtonProps };
+
   return (
     <LocaleReceiver componentName="Modal">
       {(locale) => {
@@ -91,7 +99,7 @@ export function ConfirmContent(
             actionFn={onCancel}
             close={close}
             autoFocus={autoFocusButton === 'cancel'}
-            buttonProps={cancelButtonProps}
+            buttonProps={mergedCancelButtonProps}
             prefixCls={`${rootPrefixCls}-btn`}
           >
             {cancelText || mergedLocale?.cancelText}
@@ -111,17 +119,17 @@ export function ConfirmContent(
               footer
             ) : (
               <div className={`${confirmPrefixCls}-btns`}>
-                {cancelButton}
                 <ActionButton
                   type={okType}
                   actionFn={onOk}
                   close={close}
                   autoFocus={autoFocusButton === 'ok'}
-                  buttonProps={okButtonProps}
+                  buttonProps={mergedOkButtonProps}
                   prefixCls={`${rootPrefixCls}-btn`}
                 >
                   {okText || (mergedOkCancel ? mergedLocale?.okText : mergedLocale?.justOkText)}
                 </ActionButton>
+                {cancelButton}
               </div>
             )}
           </div>
@@ -164,7 +172,7 @@ const ConfirmDialog = (props: ConfirmDialogProps) => {
 
   const confirmPrefixCls = `${prefixCls}-confirm`;
 
-  const width = props.width || 416;
+  const width = props.width || 300;
   const style = props.style || {};
   const mask = props.mask === undefined ? true : props.mask;
   // 默认为 false，保持旧版默认行为

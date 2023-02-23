@@ -20,6 +20,7 @@ Additionally, if you need show a simple confirmation dialog, you can use [`App.u
 
 <!-- prettier-ignore -->
 <code src="./demo/basic.tsx">Basic</code>
+<code src="./demo/header-background.tsx">headerBg</code>
 <code src="./demo/async.tsx">Asynchronously close</code>
 <code src="./demo/footer.tsx">Customized Footer</code>
 <code src="./demo/confirm.tsx">Confirmation modal dialog</code>
@@ -47,7 +48,7 @@ Additionally, if you need show a simple confirmation dialog, you can use [`App.u
 | cancelText | Text of the Cancel button | ReactNode | `Cancel` |  |
 | centered | Centered Modal | boolean | false |  |
 | closable | Whether a close (x) button is visible on top right of the modal dialog or not | boolean | true |  |
-| closeIcon | Custom close icon | ReactNode | &lt;CloseOutlined /> |  |
+| closeIcon | Custom close icon | ReactNode | &lt;CloseFilled /> |  |
 | confirmLoading | Whether to apply loading visual effect for OK button or not | boolean | false |  |
 | destroyOnClose | Whether to unmount child components on onClose | boolean | false |  |
 | focusTriggerAfterClose | Whether need to focus trigger element after dialog is closed | boolean | true | 4.9.0 |
@@ -65,11 +66,12 @@ Additionally, if you need show a simple confirmation dialog, you can use [`App.u
 | style | Style of floating layer, typically used at least for adjusting the position | CSSProperties | - |  |
 | title | The modal dialog's title | ReactNode | - |  |
 | open | Whether the modal dialog is visible or not | boolean | false |  |
-| width | Width of the modal dialog | string \| number | 520 |  |
+| width | Width of the modal dialog | string \| number | 560 |  |
 | wrapClassName | The class name of the container of the modal dialog | string | - |  |
 | zIndex | The `z-index` of the Modal | number | 1000 |  |
 | onCancel | Specify a function that will be called when a user clicks mask, close button on top right or Cancel button | function(e) | - |  |
 | onOk | Specify a function that will be called when a user clicks the OK button | function(e) | - |  |
+| headerBg | Whether the header has background color | boolean | false |  |
 
 #### Note
 
@@ -113,7 +115,7 @@ The items listed above are all functions, expecting a settings object as paramet
 | okType | Button `type` of the OK button | string | `primary` |  |
 | style | Style of floating layer, typically used at least for adjusting the position | CSSProperties | - |  |
 | title | Title | ReactNode | - |  |
-| width | Width of the modal dialog | string \| number | 416 |  |
+| width | Width of the modal dialog | string \| number | 300 |  |
 | wrapClassName | The class name of the container of the modal dialog | string | - | 4.18.0 |
 | zIndex | The `z-index` of the Modal | number | 1000 |  |
 | onCancel | Specify a function that will be called when the user clicks the Cancel button. The parameter of this function is a function whose execution should include closing the dialog. If the function does not take any parameter (`!onCancel.length`) then modal dialog will be closed unless returned value is `true` (`!!onCancel()`). You can also just return a promise and when the promise is resolved, the modal dialog will also be closed | function(close) | - |  |

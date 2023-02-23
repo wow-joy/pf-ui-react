@@ -1,9 +1,6 @@
 const cssVariables = (name: string, defaultValue?: string) => `var(${name}, ${defaultValue})`;
 
-const colorPrimary = cssVariables('--wj-A1_1', '#06AEA6');
-
-export default {
-  colorPrimary,
+const cssVariablesMap = {
   WjA1_1: cssVariables('--wj-A1_1', '#06AEA6'),
   WjA1_2: cssVariables('--wj-A1_2', '#1AC3BB'),
   WjA1_3: cssVariables('--wj-A1_3', '#4A9591'),
@@ -64,4 +61,11 @@ export default {
   WjF1_3: cssVariables('--wj-F1_3', '#1A78B8'),
   WjF1_4: cssVariables('--wj-F1_4', '#73461D'),
   WjF1_5: cssVariables('--wj-F1_5', '#CCC'),
+};
+
+export default {
+  colorPrimary: cssVariablesMap.WjA1_1,
+  colorPrimaryHover: cssVariablesMap.WjA1_2,
+  colorPrimaryActive: cssVariablesMap.WjA1_3,
+  ...cssVariablesMap,
 };

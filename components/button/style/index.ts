@@ -383,10 +383,10 @@ const genLinkButtonStyle: GenerateStyle<ButtonToken, CSSObject> = (token) => ({
 
   ...genHoverActiveButtonStyle(
     {
-      color: token.colorLinkHover,
+      color: token.colorPrimaryHover,
     },
     {
-      color: token.colorLinkActive,
+      color: token.colorPrimaryActive,
     },
   ),
 
@@ -474,7 +474,6 @@ const genSizeButtonStyle = (token: ButtonToken, sizePrefixCls: string = ''): CSS
     borderRadius,
     buttonPaddingHorizontal,
   } = token;
-  console.log('borderRadius', borderRadius);
 
   const paddingVertical = Math.max(0, (controlHeight - fontSize * lineHeight) / 2 - lineWidth);
   const paddingHorizontal = buttonPaddingHorizontal - lineWidth;
@@ -570,8 +569,8 @@ const CustomToken = {
   controlHeightSM: 26,
   controlHeightLG: 36,
   colorPrimary: cssVariables.colorPrimary,
-  colorPrimaryHover: cssVariables.WjA1_2,
-  colorPrimaryActive: cssVariables.WjA1_3,
+  colorPrimaryHover: cssVariables.colorPrimaryHover,
+  colorPrimaryActive: cssVariables.colorPrimaryActive,
   textColorPrimary: cssVariables.WjC1,
   colorDefault: cssVariables.WjC6,
   colorDefaultHover: cssVariables.WjC1,
@@ -584,11 +583,12 @@ const CustomToken = {
   colorSecondaryActive: cssVariables.WjA1_5,
   borderColorSecondary: cssVariables.WjA1_1,
   textColorSecondary: cssVariables.WjA1_1,
+  colorLink: cssVariables.WjF1_1,
 };
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Button', (token) => {
-  const { controlTmpOutline, paddingContentHorizontal } = token;
+  const { controlTmpOutline } = token;
 
   const buttonToken = mergeToken<ButtonToken>(token, {
     colorOutlineDefault: controlTmpOutline,

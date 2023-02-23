@@ -40,7 +40,7 @@ const App: React.FC = () => (
       <Checkbox>Remember me</Checkbox>
     </Form.Item>
 
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+    <Form.Item wrapperCol={{ offset: 8, span: 16 }} style={{ marginTop: 24 }}>
       <Button type="primary" htmlType="submit">
         Submit
       </Button>

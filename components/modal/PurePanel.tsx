@@ -1,9 +1,9 @@
-import CloseOutlined from '@ant-design/icons/CloseOutlined';
+import CloseFilled from '@pf-ui/pf-icons-react/CloseFilled';
 import classNames from 'classnames';
 import { Panel } from 'rc-dialog';
 import type { PanelProps } from 'rc-dialog/lib/Dialog/Content/Panel';
 import * as React from 'react';
-import Button from '../button';
+import Button, { ButtonProps } from '../button';
 import { convertLegacyProps } from '../button/button';
 import { ConfigContext } from '../config-provider';
 import LocaleReceiver from '../locale/LocaleReceiver';
@@ -22,10 +22,14 @@ export interface PurePanelProps
 export function renderCloseIcon(prefixCls: string, closeIcon?: React.ReactNode) {
   return (
     <span className={`${prefixCls}-close-x`}>
-      {closeIcon || <CloseOutlined className={`${prefixCls}-close-icon`} />}
+      {closeIcon || <CloseFilled className={`${prefixCls}-close-icon`} />}
     </span>
   );
 }
+
+const defaultButtonProps: ButtonProps = {
+  minWidth: 100,
+};
 
 export function renderFooter(
   props: Pick<
@@ -58,16 +62,17 @@ export function renderFooter(
     <LocaleReceiver componentName="Modal" defaultLocale={getConfirmLocale()}>
       {(locale) => (
         <>
-          <Button onClick={onCancel} {...cancelButtonProps}>
-            {cancelText || locale!.cancelText}
-          </Button>
           <Button
             {...convertLegacyProps(okType)}
             loading={confirmLoading}
             onClick={onOk}
+            {...defaultButtonProps}
             {...okButtonProps}
           >
             {okText || locale!.okText}
+          </Button>
+          <Button onClick={onCancel} {...defaultButtonProps} {...cancelButtonProps}>
+            {cancelText || locale!.cancelText}
           </Button>
         </>
       )}

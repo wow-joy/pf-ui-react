@@ -21,6 +21,7 @@ demo:
 
 <!-- prettier-ignore -->
 <code src="./demo/basic.tsx">基本</code>
+<code src="./demo/header-background.tsx">通过headerBg切换header样式</code>
 <code src="./demo/async.tsx">异步关闭</code>
 <code src="./demo/footer.tsx">自定义页脚</code>
 <code src="./demo/confirm.tsx">确认对话框</code>
@@ -48,7 +49,7 @@ demo:
 | cancelText | 取消按钮文字 | ReactNode | `取消` |  |
 | centered | 垂直居中展示 Modal | boolean | false |  |
 | closable | 是否显示右上角的关闭按钮 | boolean | true |  |
-| closeIcon | 自定义关闭图标 | ReactNode | &lt;CloseOutlined /> |  |
+| closeIcon | 自定义关闭图标 | ReactNode | &lt;CloseFilled /> |  |
 | confirmLoading | 确定按钮 loading | boolean | false |  |
 | destroyOnClose | 关闭时销毁 Modal 里的子元素 | boolean | false |  |
 | focusTriggerAfterClose | 对话框关闭后是否需要聚焦触发元素 | boolean | true | 4.9.0 |
@@ -66,11 +67,12 @@ demo:
 | style | 可用于设置浮层的样式，调整浮层位置等 | CSSProperties | - |  |
 | title | 标题 | ReactNode | - |  |
 | open | 对话框是否可见 | boolean | - |  |
-| width | 宽度 | string \| number | 520 |  |
+| width | 宽度 | string \| number | 560 |  |
 | wrapClassName | 对话框外层容器的类名 | string | - |  |
 | zIndex | 设置 Modal 的 `z-index` | number | 1000 |  |
 | onCancel | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) | - |  |
 | onOk | 点击确定回调 | function(e) | - |  |
+| headerBg | header 是否有背景色 | boolean | false |  |
 
 #### 注意
 
@@ -114,7 +116,7 @@ demo:
 | okType | 确认按钮类型 | string | `primary` |  |
 | style | 可用于设置浮层的样式，调整浮层位置等 | CSSProperties | - |  |
 | title | 标题 | ReactNode | - |  |
-| width | 宽度 | string \| number | 416 |  |
+| width | 宽度 | string \| number | 300 |  |
 | wrapClassName | 对话框外层容器的类名 | string | - | 4.18.0 |
 | zIndex | 设置 Modal 的 `z-index` | number | 1000 |  |
 | onCancel | 取消回调，参数为关闭函数，返回 promise 时 resolve 后自动关闭 | function(close) | - |  |

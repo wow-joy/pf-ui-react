@@ -8,6 +8,7 @@ import genFormValidateMotionStyle from './explain';
 export interface FormToken extends FullToken<'Form'> {
   formItemCls: string;
   rootPrefixCls: string;
+  formItemMarinBottom: number;
 }
 
 const resetForm = (token: AliasToken): CSSObject => ({
@@ -119,7 +120,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
     [formItemCls]: {
       ...resetComponent(token),
 
-      marginBottom: token.marginLG,
+      marginBottom: token.formItemMarinBottom,
       verticalAlign: 'top',
 
       '&-with-help': {
@@ -472,11 +473,16 @@ const genVerticalStyle: GenerateStyle<FormToken> = (token) => {
   };
 };
 
+const customToken = {
+  formItemMarinBottom: 14,
+};
+
 // ============================== Export ==============================
 export default genComponentStyleHook('Form', (token, { rootPrefixCls }) => {
   const formToken = mergeToken<FormToken>(token, {
     formItemCls: `${token.componentCls}-item`,
     rootPrefixCls,
+    ...customToken,
   });
 
   return [

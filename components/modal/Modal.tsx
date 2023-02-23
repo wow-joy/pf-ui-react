@@ -87,6 +87,7 @@ export interface ModalProps {
   focusTriggerAfterClose?: boolean;
   children?: React.ReactNode;
   mousePosition?: MousePosition;
+  headerBg?: boolean;
 
   // Legacy
   /** @deprecated Please use `open` instead. */
@@ -181,7 +182,10 @@ const Modal: React.FC<ModalProps> = (props) => {
     // Deprecated
     visible,
 
-    width = 520,
+    width = 560,
+    headerBg,
+    okButtonProps,
+    cancelButtonProps,
     ...restProps
   } = props;
 
@@ -221,7 +225,9 @@ const Modal: React.FC<ModalProps> = (props) => {
           focusTriggerAfterClose={focusTriggerAfterClose}
           transitionName={getTransitionName(rootPrefixCls, 'zoom', props.transitionName)}
           maskTransitionName={getTransitionName(rootPrefixCls, 'fade', props.maskTransitionName)}
-          className={classNames(hashId, className)}
+          className={classNames(hashId, className, {
+            [`${prefixCls}-header-bg`]: headerBg,
+          })}
         />
       </NoFormStyle>
     </NoCompactStyle>,

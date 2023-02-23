@@ -6,14 +6,15 @@ const { confirm } = Modal;
 
 const showConfirm = () => {
   confirm({
-    title: 'Do you Want to delete these items?',
+    title: '确定删除?',
     icon: <ExclamationCircleFilled />,
-    content: 'Some descriptions',
+    content: '描述',
+    closable: true,
     onOk() {
-      console.log('OK');
+      console.log('确定');
     },
     onCancel() {
-      console.log('Cancel');
+      console.log('取消');
     },
   });
 };

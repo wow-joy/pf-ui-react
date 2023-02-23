@@ -84,7 +84,7 @@ const FormItemLabel: React.FC<FormItemLabelProps & { required?: boolean; prefixC
   let labelChildren = label;
 
   // Keep label is original where there should have no colon
-  const computedColon = colon === true || (contextColon !== false && colon !== false);
+  const computedColon = colon === true || colon === false ? colon : contextColon;
   const haveColon = computedColon && !vertical;
 
   // Remove duplicated user input colon
