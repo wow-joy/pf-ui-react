@@ -10,6 +10,7 @@ import {
 } from '../../style/motion';
 import type { GenerateStyle } from '../../theme/internal';
 import { resetComponent, textEllipsis } from '../../style';
+import cssVariables from '../../theme/cssVariables';
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
   const { controlPaddingHorizontal } = token;
@@ -44,7 +45,7 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
         top: -9999,
         zIndex: token.zIndexPopup,
         boxSizing: 'border-box',
-        padding: token.paddingXXS,
+        padding: 0,
         overflow: 'hidden',
         fontSize: token.fontSize,
         // Fix select render lag of long text in chrome
@@ -121,13 +122,13 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
             },
 
             [`&-active:not(${selectItemCls}-option-disabled)`]: {
-              backgroundColor: token.controlItemBgHover,
+              backgroundColor: cssVariables.WjD6,
             },
 
             [`&-selected:not(${selectItemCls}-option-disabled)`]: {
               color: token.colorText,
-              fontWeight: token.fontWeightStrong,
-              backgroundColor: token.controlItemBgActive,
+              // fontWeight: token.fontWeightStrong,
+              backgroundColor: cssVariables.WjD6,
 
               [`${selectItemCls}-option-state`]: {
                 color: token.colorPrimary,

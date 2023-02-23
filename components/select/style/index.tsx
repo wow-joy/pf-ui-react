@@ -6,6 +6,7 @@ import genMultipleStyle from './multiple';
 import genSingleStyle from './single';
 import { resetComponent, resetIcon, textEllipsis } from '../../style';
 import { genCompactItemStyle } from '../../style/compact-item';
+import cssVariables from '../../theme/cssVariables';
 
 export interface ComponentToken {
   zIndexPopup: number;
@@ -61,13 +62,13 @@ const genStatusStyle = (
   token: {
     componentCls: string;
     antCls: string;
-    borderHoverColor: string;
     outlineColor: string;
     controlOutlineWidth: number;
   },
   overwriteDefaultBorder: boolean = false,
 ): CSSObject => {
-  const { componentCls, borderHoverColor, outlineColor, antCls } = token;
+  const { componentCls, outlineColor, antCls } = token;
+  const borderHoverColor = cssVariables.WjD1;
 
   const overwriteStyle: CSSObject = overwriteDefaultBorder
     ? {
@@ -163,7 +164,7 @@ const genBaseStyle: GenerateStyle<SelectToken> = (token) => {
         insetInlineEnd: inputPaddingHorizontalBase,
         height: token.fontSizeIcon,
         marginTop: -token.fontSizeIcon / 2,
-        color: token.colorTextQuaternary,
+        color: cssVariables.WjE3,
         fontSize: token.fontSizeIcon,
         lineHeight: 1,
         textAlign: 'center',
@@ -330,7 +331,6 @@ export default genComponentStyleHook(
       rootPrefixCls,
       inputPaddingHorizontalBase: token.paddingSM - 1,
     });
-
     return [genSelectStyle(selectToken)];
   },
   (token) => ({
