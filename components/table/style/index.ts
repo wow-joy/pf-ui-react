@@ -17,6 +17,7 @@ import genSizeStyle from './size';
 import genSorterStyle from './sorter';
 import genStickyStyle from './sticky';
 import genSummaryStyle from './summary';
+import cssVariables from '../../theme/cssVariables';
 
 export interface ComponentToken {}
 
@@ -160,6 +161,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
               transform: 'translateY(-50%)',
               transition: `background-color ${motionDurationMid}`,
               content: '""',
+              display: 'none',
             },
         },
 
@@ -220,6 +222,10 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         color: tableFooterTextColor,
         background: tableFooterBg,
       },
+
+      [`${componentCls}-striped`]: {
+        background: cssVariables.WjC6,
+      },
     },
   };
 };
@@ -227,23 +233,23 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
 // ============================== Export ==============================
 export default genComponentStyleHook('Table', (token) => {
   const {
-    controlItemBgActive,
-    controlItemBgActiveHover,
+    //  controlItemBgActive,
+    // controlItemBgActiveHover,
     colorTextPlaceholder,
     colorTextHeading,
     colorSplit,
     colorBorderSecondary,
     fontSize,
-    padding,
+    // padding,
     paddingXS,
-    paddingSM,
+    // paddingSM,
     controlHeight,
     colorFillAlter,
     colorIcon,
     colorIconHover,
     opacityLoading,
     colorBgContainer,
-    borderRadiusLG,
+    // borderRadiusLG,
     colorFillContent,
     colorFillSecondary,
     controlInteractiveSize: checkboxSize,
@@ -252,7 +258,7 @@ export default genComponentStyleHook('Table', (token) => {
   const baseColorAction = new TinyColor(colorIcon);
   const baseColorActionHover = new TinyColor(colorIconHover);
 
-  const tableSelectedRowBg = controlItemBgActive;
+  const tableSelectedRowBg = cssVariables.WjD6;
   const zIndexTableFixed: number = 2;
 
   const colorFillSecondarySolid = new TinyColor(colorFillSecondary)
@@ -269,17 +275,18 @@ export default genComponentStyleHook('Table', (token) => {
   const tableToken = mergeToken<TableToken>(token, {
     tableFontSize: fontSize,
     tableBg: colorBgContainer,
-    tableRadius: borderRadiusLG,
+    tableRadius: 0,
 
-    tablePaddingVertical: padding,
-    tablePaddingHorizontal: padding,
-    tablePaddingVerticalMiddle: paddingSM,
-    tablePaddingHorizontalMiddle: paddingXS,
+    paddingContentVerticalLG: 8,
+    tablePaddingVertical: 10,
+    tablePaddingHorizontal: 20,
+    tablePaddingVerticalMiddle: 8,
+    tablePaddingHorizontalMiddle: 10,
     tablePaddingVerticalSmall: paddingXS,
     tablePaddingHorizontalSmall: paddingXS,
-    tableBorderColor: colorBorderSecondary,
+    tableBorderColor: cssVariables.WjC14,
     tableHeaderTextColor: colorTextHeading,
-    tableHeaderBg: colorFillAlterSolid,
+    tableHeaderBg: cssVariables.WjD7,
     tableFooterTextColor: colorTextHeading,
     tableFooterBg: colorFillAlterSolid,
     tableHeaderCellSplitColor: colorBorderSecondary,
@@ -297,9 +304,9 @@ export default genComponentStyleHook('Table', (token) => {
     tableFixedHeaderSortActiveBg: colorFillSecondarySolid,
     tableHeaderFilterActiveBg: colorFillContent,
     tableFilterDropdownBg: colorBgContainer,
-    tableRowHoverBg: colorFillAlterSolid,
+    tableRowHoverBg: cssVariables.WjD6,
     tableSelectedRowBg,
-    tableSelectedRowHoverBg: controlItemBgActiveHover,
+    tableSelectedRowHoverBg: cssVariables.WjD6,
     zIndexTableFixed,
     zIndexTableSticky: zIndexTableFixed + 1,
     tableFontSizeMiddle: fontSize,
@@ -319,6 +326,10 @@ export default genComponentStyleHook('Table', (token) => {
     tableScrollThumbBg: colorTextPlaceholder,
     tableScrollThumbBgHover: colorTextHeading,
     tableScrollBg: colorSplit,
+
+    //
+    fontSize: 1,
+    lineHeight: 1,
   });
 
   return [

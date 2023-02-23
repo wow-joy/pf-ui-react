@@ -28,6 +28,7 @@ import type { SortState } from './hooks/useSorter';
 import useSorter, { getSortData } from './hooks/useSorter';
 import useTitleColumns from './hooks/useTitleColumns';
 import type {
+  ColumnsType,
   ColumnTitleProps,
   ColumnType,
   ExpandableConfig,
@@ -35,15 +36,14 @@ import type {
   FilterValue,
   GetPopupContainer,
   GetRowKey,
+  RefInternalTable,
   SorterResult,
   SortOrder,
   TableAction,
   TableCurrentDataSource,
   TableLocale,
-  TableRowSelection,
-  ColumnsType,
   TablePaginationConfig,
-  RefInternalTable,
+  TableRowSelection,
 } from './interface';
 import RcTable from './RcTable';
 
@@ -52,6 +52,9 @@ import useStyle from './style';
 export type { ColumnsType, TablePaginationConfig };
 
 const EMPTY_LIST: any[] = [];
+
+const defaultRowClassName: (index: number) => string = (index: number) =>
+  index % 2 === 1 ? 'ant-table-striped' : ' ';
 
 interface ChangeEventInfo<RecordType> {
   pagination: {
@@ -93,6 +96,7 @@ export interface TableProps<RecordType>
   bordered?: boolean;
   locale?: TableLocale;
   rootClassName?: string;
+  striped?: boolean;
 
   onChange?: (
     pagination: TablePaginationConfig,
@@ -127,6 +131,7 @@ function InternalTable<RecordType extends object = any>(
     rowSelection,
     rowKey = 'key',
     rowClassName,
+    striped = 'true',
     columns,
     children,
     childrenColumnName: legacyChildrenColumnName,
@@ -424,6 +429,7 @@ function InternalTable<RecordType extends object = any>(
         [`${prefixCls}-row-selected`]: selectedKeySet.has(getRowKey(record, index)),
       },
       mergedRowClassName,
+      striped ? defaultRowClassName(index) : '',
     );
   };
 
