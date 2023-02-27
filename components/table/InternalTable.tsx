@@ -54,7 +54,7 @@ export type { ColumnsType, TablePaginationConfig };
 const EMPTY_LIST: any[] = [];
 
 const defaultRowClassName: (index: number) => string = (index: number) =>
-  index % 2 === 1 ? 'ant-table-striped' : ' ';
+  index % 2 === 1 ? 'table-striped' : ' ';
 
 interface ChangeEventInfo<RecordType> {
   pagination: {

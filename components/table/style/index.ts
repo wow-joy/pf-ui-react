@@ -223,8 +223,9 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         background: tableFooterBg,
       },
 
-      [`${componentCls}-striped`]: {
+      [`table-striped`]: {
         background: cssVariables.WjC6,
+        boxShadow: `0px 1px 0px 0px #eeeeee`,
       },
     },
   };
