@@ -1,6 +1,6 @@
-import React from 'react';
 import { Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import React from 'react';
 
 interface DataType {
   key: string;
@@ -83,6 +83,12 @@ const data: DataType[] = [
   },
 ];
 
-const App: React.FC = () => <Table columns={columns} dataSource={data} />;
+const App: React.FC = () => (
+  <>
+    <Table columns={columns} dataSource={data} />
+    <Table columns={columns} />
+    <Table columns={columns} emptyType="notFound" />
+  </>
+);
 
 export default App;

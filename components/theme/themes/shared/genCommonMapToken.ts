@@ -2,7 +2,7 @@ import type { CommonMapToken, SeedToken } from '../../interface';
 import genRadius from './genRadius';
 
 export default function genCommonMapToken(token: SeedToken): CommonMapToken {
-  const { motionUnit, motionBase, borderRadius, lineWidth } = token;
+  const { motionUnit, motionBase, lineWidth } = token;
 
   return {
     // motion
@@ -14,6 +14,6 @@ export default function genCommonMapToken(token: SeedToken): CommonMapToken {
     lineWidthBold: lineWidth + 1,
 
     // radius
-    ...genRadius(borderRadius),
+    ...genRadius(),
   };
 }

@@ -69,7 +69,7 @@ const localeValues: Locale = {
     downloadFile: '下载文件',
   },
   Empty: {
-    description: '暂无数据',
+    description: '无数据',
   },
   Icon: {
     icon: '图标',

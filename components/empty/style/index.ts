@@ -1,6 +1,7 @@
 import type { CSSObject } from '@ant-design/cssinjs';
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
+import cssVariables from '../../theme/cssVariables';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {}
@@ -28,6 +29,7 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
         height: token.emptyImgHeight,
         marginBottom: marginXS,
         opacity: token.opacityImage,
+        fontSize: 40,
 
         img: {
           height: '100%',
@@ -40,7 +42,7 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
       },
 
       [`${componentCls}-description`]: {
-        color: token.colorText,
+        color: cssVariables.WjE3,
       },
 
       // 原来 &-footer 没有父子结构，现在为了外层承担我们的hashId，改成父子结果
@@ -50,10 +52,10 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
 
       '&-normal': {
         marginBlock: marginXL,
-        color: token.colorTextDisabled,
+        color: cssVariables.WjE3,
 
         [`${componentCls}-description`]: {
-          color: token.colorTextDisabled,
+          color: cssVariables.WjE3,
         },
 
         [`${componentCls}-image`]: {
@@ -63,10 +65,28 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
 
       '&-small': {
         marginBlock: marginXS,
-        color: token.colorTextDisabled,
+        color: cssVariables.WjE3,
 
         [`${componentCls}-image`]: {
           height: token.emptyImgHeightSM,
+        },
+      },
+      '&-infoEmpty': {
+        display: 'flex',
+        justifyContent: 'center',
+        lineHeight: '16px',
+
+        [`${componentCls}-image`]: {
+          lineHeight: '16px',
+          height: '16px',
+          marginRight: '10px',
+          fontSize: '16px',
+        },
+        '.anticon-info': {
+          fontSize: 16,
+        },
+        [`${componentCls}-description`]: {
+          color: cssVariables.WjE3,
         },
       },
     },

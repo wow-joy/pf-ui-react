@@ -64,21 +64,21 @@ const App: React.FC = () => {
 
   const fetchData = () => {
     setLoading(true);
-    fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
+    // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
+    //   .then((res) => res.json())
+    //   .then(({ results }) => {
+    //     setData(results);
+    //     setLoading(false);
+    //     setTableParams({
+    //       ...tableParams,
+    //       pagination: {
+    //         ...tableParams.pagination,
+    //         total: 200,
+    //         // 200 is mock data, you should read it from server
+    //         // total: data.totalCount,
+    //       },
+    //     });
+    //   });
   };
 
   useEffect(() => {

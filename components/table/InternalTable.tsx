@@ -70,6 +70,7 @@ interface ChangeEventInfo<RecordType> {
 
   resetPagination: Function;
 }
+type EmptyType = 'notFound' | 'empty';
 
 /** Same as `TableProps` but we need record parent render times */
 export interface InternalTableProps<RecordType> extends TableProps<RecordType> {
@@ -97,6 +98,7 @@ export interface TableProps<RecordType>
   locale?: TableLocale;
   rootClassName?: string;
   striped?: boolean;
+  emptyType?: EmptyType;
 
   onChange?: (
     pagination: TablePaginationConfig,
@@ -147,6 +149,7 @@ function InternalTable<RecordType extends object = any>(
     sortDirections,
     locale,
     showSorterTooltip = true,
+    emptyType = 'empty',
   } = props;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -529,9 +532,14 @@ function InternalTable<RecordType extends object = any>(
     hashId,
   );
 
-  const emptyText = (locale && locale.emptyText) || renderEmpty?.('Table') || (
-    <DefaultRenderEmpty componentName="Table" />
-  );
+  const emptyText =
+    (locale && locale.emptyText) ||
+    renderEmpty?.('Table') ||
+    (emptyType === 'notFound' ? (
+      <DefaultRenderEmpty componentName="TableNoFound" description="没有搜素结果" />
+    ) : (
+      <DefaultRenderEmpty componentName="Table" />
+    ));
 
   return wrapSSR(
     <div ref={ref} className={wrapperClassNames} style={style}>

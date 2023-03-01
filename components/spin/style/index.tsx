@@ -39,6 +39,12 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
       display: 'inline-block',
       opacity: 1,
     },
+    '&-loading-icon': {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      margin: '-30px',
+    },
 
     '&-nested-loading': {
       position: 'relative',

@@ -4,11 +4,13 @@ import { ConfigContext } from '../config-provider';
 import LocaleReceiver from '../locale/LocaleReceiver';
 import DefaultEmptyImg from './empty';
 import SimpleEmptyImg from './simple';
+import InfoEmptyImg from './infoEmpty';
 
 import useStyle from './style';
 
 const defaultEmptyImg = <DefaultEmptyImg />;
 const simpleEmptyImg = <SimpleEmptyImg />;
+const infoEmptyImg = <InfoEmptyImg />;
 
 export interface TransferLocale {
   description: string;
@@ -29,6 +31,7 @@ export interface EmptyProps {
 type CompoundedComponent = React.FC<EmptyProps> & {
   PRESENTED_IMAGE_DEFAULT: React.ReactNode;
   PRESENTED_IMAGE_SIMPLE: React.ReactNode;
+  PRESENTED_IMAGE_INFO: React.ReactNode;
 };
 
 const Empty: CompoundedComponent = ({
@@ -52,6 +55,8 @@ const Empty: CompoundedComponent = ({
         const des = typeof description !== 'undefined' ? description : locale.description;
         const alt = typeof des === 'string' ? des : 'empty';
 
+        console.log('description', description, restProps);
+
         let imageNode: React.ReactNode = null;
 
         if (typeof image === 'string') {
@@ -68,6 +73,7 @@ const Empty: CompoundedComponent = ({
               {
                 [`${prefixCls}-normal`]: image === simpleEmptyImg,
                 [`${prefixCls}-rtl`]: direction === 'rtl',
+                [`${prefixCls}-infoEmpty`]: image === infoEmptyImg,
               },
               className,
               rootClassName,
@@ -88,6 +94,7 @@ const Empty: CompoundedComponent = ({
 
 Empty.PRESENTED_IMAGE_DEFAULT = defaultEmptyImg;
 Empty.PRESENTED_IMAGE_SIMPLE = simpleEmptyImg;
+Empty.PRESENTED_IMAGE_INFO = infoEmptyImg;
 
 if (process.env.NODE_ENV !== 'production') {
   Empty.displayName = 'Empty';

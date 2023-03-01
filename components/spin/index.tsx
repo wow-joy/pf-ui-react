@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { debounce } from 'throttle-debounce';
 import omit from 'rc-util/lib/omit';
+// import OpacityLoadingTwoTone from '@pf-ui/pf-icons-react/OpacityLoadingTwoTone'
 import * as React from 'react';
 import type { ConfigConsumerProps } from '../config-provider';
 import { ConfigContext } from '../config-provider';
@@ -10,7 +11,6 @@ import useStyle from './style/index';
 const SpinSizes = ['small', 'default', 'large'] as const;
 export type SpinSize = typeof SpinSizes[number];
 export type SpinIndicator = React.ReactElement<HTMLElement>;
-
 export interface SpinProps {
   prefixCls?: string;
   className?: string;
@@ -23,6 +23,7 @@ export interface SpinProps {
   wrapperClassName?: string;
   indicator?: SpinIndicator;
   children?: React.ReactNode;
+  regularSpining: Boolean;
 }
 
 export interface SpinClassProps extends SpinProps {
@@ -85,6 +86,7 @@ const Spin: React.FC<SpinClassProps> = (props) => {
     style,
     children,
     hashId,
+    regularSpining = 'true',
     ...restProps
   } = props;
 
@@ -139,6 +141,7 @@ const Spin: React.FC<SpinClassProps> = (props) => {
       aria-live="polite"
       aria-busy={spinning}
     >
+      {/* {regularSpining ? <OpacityLoadingTwoTone class={`${prefixCls}-loading-icon anticon-spin`} /> :  renderIndicator(prefixCls, props)} */}
       {renderIndicator(prefixCls, props)}
       {tip ? <div className={`${prefixCls}-text`}>{tip}</div> : null}
     </div>
