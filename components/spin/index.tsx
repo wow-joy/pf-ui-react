@@ -23,7 +23,7 @@ export interface SpinProps {
   wrapperClassName?: string;
   indicator?: SpinIndicator;
   children?: React.ReactNode;
-  regularSpining: Boolean;
+  regularSpining?: Boolean;
 }
 
 export interface SpinClassProps extends SpinProps {
