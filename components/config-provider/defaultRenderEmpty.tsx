@@ -12,7 +12,6 @@ const DefaultRenderEmpty: React.FC<EmptyProps> = (props) => {
   const { componentName, description } = props;
   const { getPrefixCls } = useContext<ConfigConsumerProps>(ConfigContext);
   const prefix = getPrefixCls('empty');
-  console.log('description def', description);
   switch (componentName) {
     case 'Table':
     case 'List':

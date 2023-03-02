@@ -55,8 +55,6 @@ const Empty: CompoundedComponent = ({
         const des = typeof description !== 'undefined' ? description : locale.description;
         const alt = typeof des === 'string' ? des : 'empty';
 
-        console.log('description', description, restProps);
-
         let imageNode: React.ReactNode = null;
 
         if (typeof image === 'string') {

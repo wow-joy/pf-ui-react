@@ -139,7 +139,7 @@ describe('Theme', () => {
 
     Object.entries(radiusGroup).forEach(([base, result]) => {
       it(`base ${base}`, () => {
-        expect(genRadius(Number(base))).toMatchObject(result);
+        expect(genRadius()).toMatchObject(result);
       });
     });
   });

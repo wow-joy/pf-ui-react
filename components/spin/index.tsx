@@ -86,7 +86,7 @@ const Spin: React.FC<SpinClassProps> = (props) => {
     style,
     children,
     hashId,
-    regularSpining = 'true',
+    // regularSpining = 'true',
     ...restProps
   } = props;
 

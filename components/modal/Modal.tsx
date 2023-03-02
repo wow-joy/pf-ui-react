@@ -184,8 +184,8 @@ const Modal: React.FC<ModalProps> = (props) => {
 
     width = 560,
     headerBg,
-    okButtonProps,
-    cancelButtonProps,
+    // okButtonProps,
+    // cancelButtonProps,
     ...restProps
   } = props;
 

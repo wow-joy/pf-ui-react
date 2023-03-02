@@ -764,8 +764,8 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
           [`${searchPrefixCls}-button`]: {
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: token.searchBtnPaddingHorizontal - token.lineWidth,
-            paddingRight: token.searchBtnPaddingHorizontal - token.lineWidth,
+            paddingInlineStart: token.searchBtnPaddingHorizontal - token.lineWidth,
+            paddingInlineEnd: token.searchBtnPaddingHorizontal - token.lineWidth,
             borderStartStartRadius: 0,
             borderStartEndRadius: token.borderRadius,
             borderEndEndRadius: token.borderRadius,
@@ -820,8 +820,10 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
             [`${componentCls}-search-button`]: {
               marginInlineEnd: -token.lineWidth,
               borderRadius: 0,
-              paddingLeft: 8,
-              paddingRight: 8,
+              // paddingLeft: 8,
+              paddingInlineStart: 8,
+              // paddingRight: 8,
+              scrollPaddingInlineEnd: 8,
             },
           },
         },

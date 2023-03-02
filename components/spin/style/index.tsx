@@ -42,7 +42,8 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
     '&-loading-icon': {
       position: 'absolute',
       top: '50%',
-      left: '50%',
+      // left: '50%',
+      insetInlineStart: '50%',
       margin: '-30px',
     },
 

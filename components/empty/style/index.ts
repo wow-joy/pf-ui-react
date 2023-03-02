@@ -79,7 +79,7 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
         [`${componentCls}-image`]: {
           lineHeight: '16px',
           height: '16px',
-          marginRight: '10px',
+          marginInlineEnd: '10px',
           fontSize: '16px',
         },
         '.anticon-info': {
