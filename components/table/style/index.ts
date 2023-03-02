@@ -175,7 +175,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         '> tr': {
           '> td': {
             transition: `background ${motionDurationMid}, border-color ${motionDurationMid}`,
-            borderBottom: tableBorder,
+            // borderBottom: tableBorder,
 
             // ========================= Nest Table ===========================
             [`
@@ -214,6 +214,13 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
             },
           },
         },
+        'tr:last-child': {
+          // background: 'pink',
+          borderBottom: tableBorder,
+          '> td': {
+            borderBottom: tableBorder,
+          },
+        },
       },
 
       // ============================ Footer ============================
@@ -223,7 +230,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         background: tableFooterBg,
       },
 
-      [`table-striped`]: {
+      [`.table-striped`]: {
         background: cssVariables.WjC6,
         boxShadow: `0px 1px 0px 0px #eeeeee`,
       },
