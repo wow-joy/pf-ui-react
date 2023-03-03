@@ -1,6 +1,5 @@
 const cssVariables = (name: string, defaultValue?: string) => `var(${name}, ${defaultValue})`;
 
-// TODO: wjc7 的值
 const cssVariablesMap = {
   WjA1_1: cssVariables('--wj-A1_1', '#06AEA6'),
   WjA1_2: cssVariables('--wj-A1_2', '#1AC3BB'),
@@ -19,8 +18,7 @@ const cssVariablesMap = {
   WjC4: cssVariables('--wj-C4', '#F4F5F6'),
   WjC5: cssVariables('--wj-C5', '#EEEEEE'),
   WjC6: cssVariables('--wj-C6', '#F5F5F5'),
-  // WjC7: cssVariables('--wj-C7', '#D1D1D1'),
-  WjC7: '#D1D1D1',
+  WjC7: cssVariables('--wj-C7', '#D1D1D1'),
   WjC8: cssVariables('--wj-C8', '#C1C1C1'),
   WjC9: cssVariables('--wj-C9', '#DBDBDB'),
   WjC10: cssVariables('--wj-C10', '#979797'),

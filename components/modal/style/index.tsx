@@ -117,6 +117,7 @@ const genModalStyle: GenerateStyle<ModalToken> = (token) => {
 
         [`${componentCls}-centered`]: {
           textAlign: 'center',
+          top: '-10% !important',
 
           '&::before': {
             display: 'inline-block',

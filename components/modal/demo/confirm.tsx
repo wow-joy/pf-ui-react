@@ -16,6 +16,7 @@ const showConfirm = () => {
     onCancel() {
       console.log('取消');
     },
+    centered: true,
   });
 };
 
@@ -30,6 +31,7 @@ const showPromiseConfirm = () => {
       }).catch(() => console.log('Oops errors!'));
     },
     onCancel() {},
+    centered: true,
   });
 };
 
@@ -47,6 +49,7 @@ const showDeleteConfirm = () => {
     onCancel() {
       console.log('Cancel');
     },
+    centered: true,
   });
 };
 
@@ -67,6 +70,7 @@ const showPropsConfirm = () => {
     onCancel() {
       console.log('Cancel');
     },
+    centered: true,
   });
 };
 
