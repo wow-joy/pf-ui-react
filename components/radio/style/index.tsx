@@ -2,6 +2,7 @@ import { Keyframes } from '@ant-design/cssinjs';
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 import { genFocusOutline, resetComponent } from '../../style';
+import cssVariables from '../../theme/cssVariables';
 
 // ============================== Tokens ==============================
 export interface ComponentToken {}
@@ -492,7 +493,6 @@ export default genComponentStyleHook('Radio', (token) => {
     colorPrimaryHover,
     colorPrimaryActive,
     colorText,
-    colorPrimary,
     marginXS,
     controlOutlineWidth,
     colorTextLightSolid,
@@ -507,7 +507,7 @@ export default genComponentStyleHook('Radio', (token) => {
   const dotPadding = 4; // Fixed value
   const radioDotDisabledSize = radioSize - dotPadding * 2;
   const radioDotSize = wireframe ? radioDotDisabledSize : radioSize - (dotPadding + lineWidth) * 2;
-  const radioCheckedColor = colorPrimary;
+  const radioCheckedColor = cssVariables.WjA1_1;
 
   // Radio buttons
   const radioButtonColor = colorText;
