@@ -109,6 +109,7 @@ function useModal(): readonly [
       error: getConfirmFunc(withError),
       warning: getConfirmFunc(withWarn),
       confirm: getConfirmFunc(withConfirm),
+      infoOutline: getConfirmFunc(withInfo),
     }),
     [],
   );
