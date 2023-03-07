@@ -78,11 +78,22 @@ const genStatusStyle = (
       }
     : {};
 
+  const errorStyle: CSSObject = rootSelectCls.endsWith('error')
+    ? {
+        [`${componentCls}-selector`]: {
+          borderColor: cssVariables.WjE1_1,
+          background: cssVariables.WjE1_2,
+        },
+      }
+    : {};
+
   return {
     [rootSelectCls]: {
       [`&:not(${componentCls}-disabled):not(${componentCls}-customize-input):not(${antCls}-pagination-size-changer)`]:
         {
           ...overwriteStyle,
+
+          ...errorStyle,
 
           [`${componentCls}-focused& ${componentCls}-selector`]: {
             borderColor: borderHoverColor,

@@ -19,6 +19,21 @@ const showConfirm = () => {
     centered: true,
   });
 };
+const showConfirmInfo = () => {
+  confirm({
+    title: '确定删除?',
+    content: 'showConfirmInfo',
+    closable: true,
+    onOk() {
+      console.log('确定');
+    },
+    onCancel() {
+      console.log('取消');
+    },
+    centered: true,
+    type: 'infoOutline',
+  });
+};
 
 const showPromiseConfirm = () => {
   confirm({
@@ -77,6 +92,8 @@ const showPropsConfirm = () => {
 const App: React.FC = () => (
   <Space wrap>
     <Button onClick={showConfirm}>Confirm</Button>
+    <Button onClick={showConfirmInfo}>showConfirmInfo</Button>
+
     <Button onClick={showPromiseConfirm}>With promise</Button>
     <Button onClick={showDeleteConfirm} type="dashed">
       Delete

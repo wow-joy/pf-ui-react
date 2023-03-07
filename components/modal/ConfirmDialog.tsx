@@ -1,7 +1,8 @@
 import CheckCircleFilled from '@ant-design/icons/CheckCircleFilled';
 import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
-import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled';
-import InfoCircleFilled from '@ant-design/icons/InfoCircleFilled';
+// import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled';
+import AlertOutlined from '@pf-ui/pf-icons-react/AlertOutlined';
+import AlertTwoTone from '@pf-ui/pf-icons-react/AlertTwoTone';
 import classNames from 'classnames';
 import * as React from 'react';
 import ConfigProvider from '../config-provider';
@@ -60,11 +61,16 @@ export function ConfirmContent(
   // Icon
   let mergedIcon: React.ReactNode = icon;
 
+  console.log('=====', icon, type);
+
   // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
   if (!icon && icon !== null) {
     switch (type) {
       case 'info':
-        mergedIcon = <InfoCircleFilled />;
+        mergedIcon = <AlertTwoTone />;
+        break;
+      case 'infoOutline':
+        mergedIcon = <AlertOutlined />;
         break;
 
       case 'success':
@@ -76,7 +82,7 @@ export function ConfirmContent(
         break;
 
       default:
-        mergedIcon = <ExclamationCircleFilled />;
+        mergedIcon = <AlertOutlined />;
     }
   }
 

@@ -125,7 +125,7 @@ export interface ModalFuncProps {
   style?: React.CSSProperties;
   wrapClassName?: string;
   maskStyle?: React.CSSProperties;
-  type?: 'info' | 'success' | 'error' | 'warn' | 'warning' | 'confirm';
+  type?: 'info' | 'success' | 'error' | 'warn' | 'warning' | 'confirm' | 'infoOutline';
   keyboard?: boolean;
   getContainer?: string | HTMLElement | getContainerFunc | false;
   autoFocusButton?: null | 'ok' | 'cancel';

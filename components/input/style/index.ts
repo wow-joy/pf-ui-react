@@ -94,9 +94,13 @@ export const genStatusStyle = (token: InputToken, parentCls: string): CSSObject 
   return {
     [`&-status-error:not(${parentCls}-disabled):not(${parentCls}-borderless)${parentCls}`]: {
       borderColor: colorError,
+      background: cssVariables.WjE1_2,
 
       '&:hover': {
         borderColor: colorErrorBorderHover,
+      },
+      input: {
+        background: cssVariables.WjE1_2,
       },
 
       '&:focus, &-focused': {

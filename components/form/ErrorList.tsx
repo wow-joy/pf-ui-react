@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import CSSMotion, { CSSMotionList } from 'rc-motion';
 import * as React from 'react';
 import { useMemo } from 'react';
+import ErrorFilled from '@pf-ui/pf-icons-react/ErrorFilled';
 import initCollapseMotion from '../_util/motion';
 import { FormItemPrefixContext } from './context';
 import type { ValidateStatus } from './FormItem';
@@ -121,6 +122,7 @@ export default function ErrorList({
                     })}
                     style={itemStyle}
                   >
+                    <ErrorFilled />
                     {error}
                   </div>
                 );
