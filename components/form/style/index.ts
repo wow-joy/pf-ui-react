@@ -280,7 +280,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
 
             svg: {
               fontSize: '16px',
-              marginRight: '10px',
+              marginBlockEnd: '10px',
             },
           },
 
