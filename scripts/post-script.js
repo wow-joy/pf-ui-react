@@ -8,7 +8,8 @@ const relativeTime = require('dayjs/plugin/relativeTime');
 // const packageJson = require('../package.json');
 
 dayjs.extend(relativeTime);
-const CONCH_TAG = 'conch-v5';
+// const CONCH_TAG = 'conch-v5';
+const CONCH_TAG = 'latest';
 
 const DEPRECIATED_VERSION = {
   '>= 4.21.6 < 4.22.0': ['https://github.com/ant-design/ant-design/pull/36682'],
