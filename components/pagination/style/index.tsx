@@ -8,6 +8,7 @@ import {
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 import { genFocusOutline, genFocusStyle, resetComponent } from '../../style';
+import cssVariables from '../../theme/cssVariables';
 
 interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
   paginationItemSize: number;
@@ -29,6 +30,21 @@ interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
   paginationEllipsisTextIndent: string;
   paginationSlashMarginInlineStart: number;
   paginationSlashMarginInlineEnd: number;
+  itemColor: string;
+  itemIconColor: string;
+  itemBorderColor: string;
+  itemHoverColor: string;
+  itemHoverIconColor: string;
+  itemHoverBorderColor: string;
+  itemDisabledColor: string;
+  itemDisabledIconColor: string;
+  itemDisabledBorderColor: string;
+  itemDisabledBgColor: string;
+  itemSmallMarginInlineEnd: number;
+  itemSmallMarginInlineStart: number;
+  inputHoverBorderColor: string;
+  quickJumperBtnHeight: number;
+  quickJumperBtnFontSize: number;
 }
 
 const genPaginationDisabledStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
@@ -40,7 +56,9 @@ const genPaginationDisabledStyle: GenerateStyle<PaginationToken, CSSObject> = (t
         cursor: 'not-allowed',
 
         [`${componentCls}-item-link`]: {
-          color: token.colorTextDisabled,
+          color: token.itemDisabledColor,
+          backgroundColor: token.itemDisabledBgColor,
+          borderColor: token.itemBorderColor,
           cursor: 'not-allowed',
         },
       },
@@ -122,33 +140,42 @@ const genPaginationMiniStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       {
         height: token.paginationItemSizeSM,
         lineHeight: `${token.paginationItemSizeSM}px`,
+        marginInlineStart: token.itemSmallMarginInlineStart,
+        marginInlineEnd: 0,
       },
+    [`&${componentCls}-mini ${componentCls}-simple-pager`]: {
+      marginInlineStart: 0,
+      marginInlineEnd: token.itemSmallMarginInlineEnd,
+    },
 
     [`&${componentCls}-mini ${componentCls}-item`]: {
       minWidth: token.paginationItemSizeSM,
       height: token.paginationItemSizeSM,
-      margin: 0,
+      marginInlineEnd: token.itemSmallMarginInlineEnd,
       lineHeight: `${token.paginationItemSizeSM - 2}px`,
     },
 
-    [`&${componentCls}-mini ${componentCls}-item:not(${componentCls}-item-active)`]: {
-      backgroundColor: 'transparent',
-      borderColor: 'transparent',
-    },
+    // [`&${componentCls}-mini ${componentCls}-item:not(${componentCls}-item-active)`]: {
+    //   backgroundColor: 'transparent',
+    //   borderColor: 'transparent',
+    // },
 
     [`&${componentCls}-mini ${componentCls}-prev, &${componentCls}-mini ${componentCls}-next`]: {
       minWidth: token.paginationItemSizeSM,
       height: token.paginationItemSizeSM,
-      margin: 0,
       lineHeight: `${token.paginationItemSizeSM}px`,
+    },
+
+    [`&${componentCls}-mini ${componentCls}-prev`]: {
+      marginInlineEnd: token.itemSmallMarginInlineEnd,
     },
 
     [`
     &${componentCls}-mini ${componentCls}-prev ${componentCls}-item-link,
     &${componentCls}-mini ${componentCls}-next ${componentCls}-item-link
     `]: {
-      backgroundColor: 'transparent',
-      borderColor: 'transparent',
+      // backgroundColor: 'transparent',
+      // borderColor: 'transparent',
 
       '&::after': {
         height: token.paginationItemSizeSM,
@@ -159,15 +186,19 @@ const genPaginationMiniStyle: GenerateStyle<PaginationToken, CSSObject> = (token
     [`&${componentCls}-mini ${componentCls}-jump-prev, &${componentCls}-mini ${componentCls}-jump-next`]:
       {
         height: token.paginationItemSizeSM,
-        marginInlineEnd: 0,
+        marginInlineEnd: token.itemSmallMarginInlineEnd,
         lineHeight: `${token.paginationItemSizeSM}px`,
       },
 
     [`&${componentCls}-mini ${componentCls}-options`]: {
-      marginInlineStart: token.paginationMiniOptionsMarginInlineStart,
+      marginInlineStart: token.itemSmallMarginInlineStart,
 
       [`&-size-changer`]: {
         top: token.paginationMiniOptionsSizeChangerTop,
+
+        [`& + ${componentCls}-options-quick-jumper`]: {
+          marginInlineStart: token.itemSmallMarginInlineStart,
+        },
       },
 
       [`&-quick-jumper`]: {
@@ -179,6 +210,10 @@ const genPaginationMiniStyle: GenerateStyle<PaginationToken, CSSObject> = (token
 
           width: token.paginationMiniQuickJumperInputWidth,
           height: token.controlHeightSM,
+
+          '&:hover, &:active, &:focus': {
+            borderColor: token.inputHoverBorderColor,
+          },
         },
       },
     },
@@ -326,7 +361,7 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       display: 'inline-block',
       minWidth: token.paginationItemSize,
       height: token.paginationItemSize,
-      color: token.colorText,
+      color: token.itemIconColor,
       fontFamily: token.paginationFontFamily,
       lineHeight: `${token.paginationItemSize}px`,
       textAlign: 'center',
@@ -342,9 +377,9 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       outline: 0,
 
       button: {
-        color: token.colorText,
         cursor: 'pointer',
         userSelect: 'none',
+        color: token.itemIconColor,
       },
 
       [`${componentCls}-item-link`]: {
@@ -359,6 +394,7 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         borderRadius: token.borderRadius,
         outline: 'none',
         transition: `border ${token.motionDurationMid}`,
+        borderColor: token.itemBorderColor,
       },
 
       [`&:focus-visible ${componentCls}-item-link`]: {
@@ -366,17 +402,13 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       },
 
       [`&:hover ${componentCls}-item-link`]: {
-        backgroundColor: token.colorBgTextHover,
+        borderColor: token.itemHoverBorderColor,
+        color: token.itemHoverColor,
       },
 
       [`&:active ${componentCls}-item-link`]: {
-        backgroundColor: token.colorBgTextActive,
-      },
-
-      [`&${componentCls}-disabled:hover`]: {
-        [`${componentCls}-item-link`]: {
-          backgroundColor: 'transparent',
-        },
+        borderColor: token.itemHoverBorderColor,
+        color: token.itemHoverColor,
       },
     },
 
@@ -395,10 +427,17 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         width: 'auto',
       },
 
+      [`&-size-changer`]: {
+        top: token.paginationMiniOptionsSizeChangerTop,
+
+        [`& + ${componentCls}-options-quick-jumper`]: {
+          marginInlineStart: token.marginXS,
+        },
+      },
+
       '&-quick-jumper': {
         display: 'inline-block',
         height: token.controlHeight,
-        marginInlineStart: token.marginXS,
         lineHeight: `${token.controlHeight}px`,
         verticalAlign: 'top',
 
@@ -411,6 +450,20 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
           margin: 0,
           marginInlineStart: token.marginXS,
           marginInlineEnd: token.marginXS,
+        },
+
+        '&-btn': {
+          marginInlineStart: token.itemSmallMarginInlineStart,
+        },
+        '&-btn-small': {
+          fontSize: token.quickJumperBtnFontSize,
+          height: token.quickJumperBtnHeight,
+          paddingTop:
+            (token.quickJumperBtnHeight - token.lineHeight * token.quickJumperBtnFontSize) / 2 -
+            token.lineWidth,
+          paddingBottom:
+            (token.quickJumperBtnHeight - token.lineHeight * token.quickJumperBtnFontSize) / 2 -
+            token.lineWidth,
         },
       },
     },
@@ -437,11 +490,12 @@ const genPaginationItemStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       outline: 0,
       cursor: 'pointer',
       userSelect: 'none',
+      borderColor: token.itemBorderColor,
 
       a: {
         display: 'block',
         padding: `0 ${token.paginationItemPaddingInline}px`,
-        color: token.colorText,
+        color: token.itemColor,
         transition: 'none',
 
         '&:hover': {
@@ -452,11 +506,11 @@ const genPaginationItemStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       [`&:not(${componentCls}-item-active)`]: {
         '&:hover': {
           transition: `all ${token.motionDurationMid}`,
-          backgroundColor: token.colorBgTextHover,
-        },
+          borderColor: token.itemHoverBorderColor,
 
-        '&:active': {
-          backgroundColor: token.colorBgTextActive,
+          a: {
+            color: token.itemHoverColor,
+          },
         },
       },
 
@@ -472,14 +526,6 @@ const genPaginationItemStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         a: {
           color: token.colorPrimary,
         },
-
-        '&:hover': {
-          borderColor: token.colorPrimaryHover,
-        },
-
-        '&:hover a': {
-          color: token.colorPrimaryHover,
-        },
       },
     },
   };
@@ -491,6 +537,8 @@ const genPaginationStyle: GenerateStyle<PaginationToken, CSSObject> = (token) =>
   return {
     [componentCls]: {
       ...resetComponent(token),
+      fontSize: token.fontSizeSM,
+      color: token.itemColor,
 
       'ul, ol': {
         margin: 0,
@@ -510,6 +558,7 @@ const genPaginationStyle: GenerateStyle<PaginationToken, CSSObject> = (token) =>
       [`${componentCls}-total-text`]: {
         display: 'inline-block',
         height: token.paginationItemSize,
+        marginInlineStart: token.marginXS,
         marginInlineEnd: token.marginXS,
         lineHeight: `${token.paginationItemSize - 2}px`,
         verticalAlign: 'middle',
@@ -649,6 +698,25 @@ const genBorderedStyle: GenerateStyle<PaginationToken> = (token) => {
   };
 };
 
+const customToken = {
+  colorPrimary: cssVariables.colorPrimary,
+  colorPrimaryHover: cssVariables.colorPrimaryHover,
+  inputHoverBorderColor: cssVariables.WjD1,
+
+  itemColor: cssVariables.WjE3,
+  itemIconColor: cssVariables.WjC10,
+  itemBorderColor: cssVariables.WjC13,
+
+  itemHoverColor: cssVariables.colorPrimary,
+  itemHoverIconColor: cssVariables.colorPrimary,
+  itemHoverBorderColor: cssVariables.colorPrimary,
+
+  itemDisabledColor: cssVariables.WjE3,
+  itemDisabledIconColor: cssVariables.WjE4,
+  itemDisabledBorderColor: cssVariables.WjC7,
+  itemDisabledBgColor: cssVariables.WjC3,
+};
+
 // ============================== Export ==============================
 export default genComponentStyleHook('Pagination', (token) => {
   const paginationToken = mergeToken<PaginationToken>(
@@ -673,8 +741,13 @@ export default genComponentStyleHook('Pagination', (token) => {
       paginationSlashMarginInlineStart: token.marginXXS,
       paginationSlashMarginInlineEnd: token.marginSM,
       paginationEllipsisTextIndent: '0.13em', // magic for ui experience
+      itemSmallMarginInlineEnd: token.marginXXS,
+      itemSmallMarginInlineStart: 10,
+      quickJumperBtnHeight: 24,
+      quickJumperBtnFontSize: token.fontSizeSM,
     },
     initInputToken(token),
+    customToken,
   );
   return [
     genPaginationStyle(paginationToken),

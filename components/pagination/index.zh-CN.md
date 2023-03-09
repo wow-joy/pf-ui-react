@@ -21,7 +21,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*WM86SrBC8TsAAA
 <code src="./demo/more.tsx">更多</code>
 <code src="./demo/changer.tsx">改变</code>
 <code src="./demo/jump.tsx">跳转</code>
-<code src="./demo/mini.tsx">迷你</code>
+<code src="./demo/size.tsx">不同尺寸</code>
 <code src="./demo/simple.tsx">简洁</code>
 <code src="./demo/controlled.tsx">受控</code>
 <code src="./demo/total.tsx">总数</code>

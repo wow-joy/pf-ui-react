@@ -20,7 +20,7 @@ A long list can be divided into several pages using `Pagination`, and only one p
 <code src="./demo/more.tsx">More</code>
 <code src="./demo/changer.tsx">Changer</code>
 <code src="./demo/jump.tsx">Jumper</code>
-<code src="./demo/mini.tsx">Mini size</code>
+<code src="./demo/size.tsx">Size</code>
 <code src="./demo/simple.tsx">Simple mode</code>
 <code src="./demo/controlled.tsx">Controlled</code>
 <code src="./demo/total.tsx">Total number</code>

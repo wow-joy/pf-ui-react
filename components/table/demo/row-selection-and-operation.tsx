@@ -68,7 +68,12 @@ const App: React.FC = () => {
           {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <Table
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={data}
+        pagination={{ showQuickJumper: true }}
+      />
     </div>
   );
 };

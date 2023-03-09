@@ -28,6 +28,9 @@ interface RadioToken extends FullToken<'Radio'> {
   radioDisabledButtonCheckedBg: string;
   radioDisabledButtonCheckedColor: string;
   radioWrapperMarginRight: number;
+
+  radioPaddingInline: number;
+  radioMarginInline: number;
 }
 
 // ============================== Styles ==============================
@@ -67,7 +70,6 @@ const getGroupRadioStyle: GenerateStyle<RadioToken> = (token) => {
 const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
   const {
     componentCls,
-    radioWrapperMarginRight,
     radioCheckedColor,
     radioSize,
     motionDurationSlow,
@@ -80,12 +82,13 @@ const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
     radioDotSize,
     colorBgContainerDisabled,
     colorTextDisabled,
-    paddingXS,
     radioDotDisabledColor,
     lineType,
     radioDotDisabledSize,
     wireframe,
     colorWhite,
+    radioPaddingInline,
+    radioMarginInline,
   } = token;
   const radioInnerPrefixCls = `${componentCls}-inner`;
 
@@ -96,7 +99,7 @@ const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
       display: 'inline-flex',
       alignItems: 'baseline',
       marginInlineStart: 0,
-      marginInlineEnd: radioWrapperMarginRight,
+      marginInlineEnd: radioMarginInline,
       cursor: 'pointer',
 
       // RTL
@@ -248,8 +251,8 @@ const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
       },
 
       [`span${componentCls} + *`]: {
-        paddingInlineStart: paddingXS,
-        paddingInlineEnd: paddingXS,
+        paddingInlineStart: radioPaddingInline,
+        paddingInlineEnd: radioPaddingInline,
       },
     },
   };
@@ -535,6 +538,8 @@ export default genComponentStyleHook('Radio', (token) => {
     radioDisabledButtonCheckedBg: controlItemBgActiveDisabled,
     radioDisabledButtonCheckedColor,
     radioWrapperMarginRight,
+    radioPaddingInline: 10,
+    radioMarginInline: 30,
   });
 
   return [

@@ -9,6 +9,7 @@ export interface FormToken extends FullToken<'Form'> {
   formItemCls: string;
   rootPrefixCls: string;
   formItemMarinBottom: number;
+  extraLineHeight: string;
 }
 
 const resetForm = (token: AliasToken): CSSObject => ({
@@ -262,7 +263,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
           clear: 'both',
           color: token.colorTextDescription,
           fontSize: token.fontSize,
-          lineHeight: token.lineHeight,
+          lineHeight: token.extraLineHeight,
         },
 
         '&-explain-connected': {
@@ -277,10 +278,11 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
         '&-explain': {
           '&-error': {
             color: token.colorError,
+            height: token.extraLineHeight,
 
             svg: {
               fontSize: '16px',
-              marginBlockEnd: '10px',
+              marginInlineEnd: '10px',
             },
           },
 
@@ -480,6 +482,7 @@ const genVerticalStyle: GenerateStyle<FormToken> = (token) => {
 
 const customToken = {
   formItemMarinBottom: 14,
+  extraLineHeight: '24px',
 };
 
 // ============================== Export ==============================

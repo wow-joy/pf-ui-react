@@ -122,7 +122,7 @@ export default function ErrorList({
                     })}
                     style={itemStyle}
                   >
-                    <ErrorFilled />
+                    <ErrorFilled style={{ display: 'inline-flex' }} />
                     {error}
                   </div>
                 );

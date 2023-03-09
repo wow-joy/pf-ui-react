@@ -11,6 +11,7 @@ import { ConfigContext } from '../config-provider';
 import useBreakpoint from '../grid/hooks/useBreakpoint';
 import LocaleReceiver from '../locale/LocaleReceiver';
 import { MiddleSelect, MiniSelect } from './Select';
+import Button, { ButtonProps } from '../button';
 import useStyle from './style';
 
 export interface PaginationProps extends RcPaginationProps {
@@ -33,22 +34,49 @@ export interface PaginationConfig extends Omit<PaginationProps, 'rootClassName'>
 
 export type { PaginationLocale };
 
+const DefaultGoButton: React.FC<Pick<ButtonProps, 'prefix' | 'size' | 'children'>> = ({
+  prefix,
+  size,
+  children,
+}) => (
+  <Button
+    size={size}
+    minWidth={60}
+    className={classNames(`${prefix}-options-quick-jumper-btn`, {
+      [`${prefix}-options-quick-jumper-btn-small`]: size === 'small',
+    })}
+  >
+    {children}
+  </Button>
+);
+
 const Pagination: React.FC<PaginationProps> = ({
   prefixCls: customizePrefixCls,
   selectPrefixCls: customizeSelectPrefixCls,
   className,
   rootClassName,
-  size,
+  size = 'small',
   locale: customLocale,
   selectComponentClass,
   responsive,
   showSizeChanger,
+  showQuickJumper,
   ...restProps
 }) => {
   const { xs } = useBreakpoint(responsive);
 
   const { getPrefixCls, direction, pagination = {} } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls('pagination', customizePrefixCls);
+  const _showQuickJumper =
+    showQuickJumper === true
+      ? {
+          goButton: (
+            <DefaultGoButton size={size === 'default' ? 'middle' : size} prefix={prefixCls}>
+              确定
+            </DefaultGoButton>
+          ),
+        }
+      : showQuickJumper;
 
   // Style
   const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -124,6 +152,7 @@ const Pagination: React.FC<PaginationProps> = ({
             selectComponentClass={selectComponentClass || (isSmall ? MiniSelect : MiddleSelect)}
             locale={locale}
             showSizeChanger={mergedShowSizeChanger}
+            showQuickJumper={_showQuickJumper}
           />,
         );
       }}

@@ -4,13 +4,17 @@ import { Pagination } from 'antd';
 
 const showTotal: PaginationProps['showTotal'] = (total) => `Total ${total} items`;
 
+const style = {
+  marginBottom: 12,
+};
+
 const App: React.FC = () => (
   <>
-    <Pagination size="small" total={50} />
-    <Pagination size="small" total={50} showSizeChanger showQuickJumper />
-    <Pagination size="small" total={50} showTotal={showTotal} />
+    <Pagination size="default" total={50} style={style} />
+    <Pagination size="default" total={50} showSizeChanger showQuickJumper style={style} />
+    <Pagination size="default" total={50} showTotal={showTotal} style={style} />
     <Pagination
-      size="small"
+      size="default"
       total={50}
       disabled
       showTotal={showTotal}
