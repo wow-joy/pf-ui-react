@@ -11,7 +11,8 @@ import { ConfigContext } from '../config-provider';
 import useBreakpoint from '../grid/hooks/useBreakpoint';
 import LocaleReceiver from '../locale/LocaleReceiver';
 import { MiddleSelect, MiniSelect } from './Select';
-import Button, { ButtonProps } from '../button';
+import Button from '../button';
+import type { ButtonProps } from '../button';
 import useStyle from './style';
 
 export interface PaginationProps extends RcPaginationProps {
