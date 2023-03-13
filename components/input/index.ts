@@ -4,6 +4,7 @@ import type { InputProps, InputRef } from './Input';
 import InternalInput from './Input';
 import Password from './Password';
 import Search from './Search';
+import SearchInput from './SearchInput';
 import TextArea from './TextArea';
 
 export type { GroupProps } from './Group';
@@ -17,6 +18,7 @@ type CompoundedComponent = React.ForwardRefExoticComponent<
 > & {
   Group: typeof Group;
   Search: typeof Search;
+  SearchInput: typeof SearchInput;
   TextArea: typeof TextArea;
   Password: typeof Password;
 };
@@ -29,6 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 Input.Group = Group;
 Input.Search = Search;
+Input.SearchInput = SearchInput;
 Input.TextArea = TextArea;
 Input.Password = Password;
 export default Input;

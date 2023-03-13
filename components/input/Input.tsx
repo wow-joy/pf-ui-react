@@ -1,4 +1,5 @@
-import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
+// import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
+import ErrorFilled from '@pf-ui/pf-icons-react/ErrorFilled';
 import classNames from 'classnames';
 import type { InputProps as RcInputProps, InputRef } from 'rc-input';
 import RcInput from 'rc-input';
@@ -153,7 +154,7 @@ const Input = forwardRef<InputRef, InputProps>((props, ref) => {
   if (typeof allowClear === 'object' && allowClear?.clearIcon) {
     mergedAllowClear = allowClear;
   } else if (allowClear) {
-    mergedAllowClear = { clearIcon: <CloseCircleFilled /> };
+    mergedAllowClear = { clearIcon: <ErrorFilled /> };
   }
 
   return wrapSSR(

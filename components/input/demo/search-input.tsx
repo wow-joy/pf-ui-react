@@ -2,7 +2,7 @@ import React from 'react';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 
-const { Search } = Input;
+const { Search, SearchInput } = Input;
 
 const suffix = (
   <AudioOutlined
@@ -17,8 +17,20 @@ const onSearch = (value: string) => console.log(value);
 
 const App: React.FC = () => (
   <Space direction="vertical">
-    <Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
-    <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+    <Search placeholder="input search text" onSearch={onSearch} loading style={{ width: 200 }} />
+    <Search
+      placeholder="input search text"
+      allowClear
+      disabled
+      onSearch={onSearch}
+      style={{ width: 200 }}
+    />
+    <SearchInput
+      placeholder="input search text"
+      allowClear
+      onSearch={onSearch}
+      style={{ width: 200 }}
+    />
     <Search
       addonBefore="https://"
       placeholder="input search text"

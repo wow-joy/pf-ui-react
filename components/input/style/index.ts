@@ -17,6 +17,7 @@ export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputBorderHoverColor: string;
   inputBorderActiveColor: string;
   searchBtnPaddingHorizontal: number;
+  clearIconColor: string;
 };
 
 export const genPlaceholderStyle = (color: string): CSSObject => ({
@@ -548,7 +549,7 @@ const genAllowClearStyle = (token: InputToken): CSSObject => {
     // ========================= Input =========================
     [`${componentCls}-clear-icon`]: {
       margin: 0,
-      color: token.colorTextQuaternary,
+      color: token.clearIconColor,
       fontSize: token.fontSizeIcon,
       lineHeight: `${token.fontSizeIcon}px`,
       verticalAlign: -1,
@@ -556,14 +557,6 @@ const genAllowClearStyle = (token: InputToken): CSSObject => {
       // https://codesandbox.io/s/wizardly-sun-u10br
       cursor: 'pointer',
       transition: `color ${token.motionDurationSlow}`,
-
-      '&:hover': {
-        color: token.colorTextTertiary,
-      },
-
-      '&:active': {
-        color: token.colorText,
-      },
 
       '&-hidden': {
         visibility: 'hidden',
@@ -805,6 +798,20 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
         },
       },
 
+      [`${searchPrefixCls}-suffix-icon`]: {
+        fontSize: token.fontSizeIcon,
+        color: cssVariables.WjE4,
+        cursor: 'pointer',
+
+        '&-disabled': {
+          cursor: 'not-allowed',
+        },
+      },
+
+      [`${searchPrefixCls}-loading-icon`]: {
+        color: 'rgba(0, 0, 0, 0.45)',
+      },
+
       [`&-large ${searchPrefixCls}-button`]: {
         height: token.controlHeightLG,
       },
@@ -970,6 +977,7 @@ const customToken = {
   searchBtnPaddingHorizontal: 8,
   fontSizeIcon: 16,
   inputPaddingHorizontal: 9,
+  clearIconColor: `rgba(0, 0, 0, 0.3)`,
 };
 
 // ============================== Export ==============================
