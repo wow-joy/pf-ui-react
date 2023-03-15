@@ -113,6 +113,7 @@ export interface ComponentTokenMap {
   Tour?: TourComponentToken;
   QRCode?: QRCodeComponentToken;
   App?: AppComponentToken;
+  Scrollbar?: {};
 
   /** @private Internal TS definition. Do not use. */
   Wave?: WaveToken;

@@ -67,5 +67,6 @@ export default {
   colorPrimary: cssVariablesMap.WjA1_1,
   colorPrimaryHover: cssVariablesMap.WjA1_2,
   colorPrimaryActive: cssVariablesMap.WjA1_3,
+  borderColor: cssVariablesMap.WjC7,
   ...cssVariablesMap,
 };

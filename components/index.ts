@@ -157,4 +157,6 @@ export { default as Watermark } from './watermark';
 export type { WatermarkProps } from './watermark';
 export { default as QRCode } from './qrcode';
 export type { QRCodeProps, QRPropsCanvas } from './qrcode/interface';
+export { default as Scrollbar } from './scrollbar';
+export type { ScrollbarProps } from './scrollbar/interface';
 export { default as version } from './version';
