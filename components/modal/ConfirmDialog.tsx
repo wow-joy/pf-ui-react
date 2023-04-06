@@ -61,8 +61,6 @@ export function ConfirmContent(
   // Icon
   let mergedIcon: React.ReactNode = icon;
 
-  console.log('=====', icon, type);
-
   // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
   if (!icon && icon !== null) {
     switch (type) {

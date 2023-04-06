@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ScrollbarProps } from './interface';
-import { ConfigContext } from '../config-provider';
 import classNames from 'classnames';
+import { ConfigContext } from '../config-provider';
 import useStyle from './style';
+import type { ScrollbarProps } from './interface';
 
 const Scrollbar = React.forwardRef<HTMLDivElement, ScrollbarProps>((props, ref) => {
   const {

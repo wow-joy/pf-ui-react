@@ -18,7 +18,6 @@ const SearchInput = React.forwardRef<InputRef, SearchInputProps>((props, ref) =>
     inputPrefixCls: customizeInputPrefixCls,
     className,
     size: customizeSize,
-    addonAfter,
     loading,
     disabled,
     onSearch: customOnSearch,
@@ -92,7 +91,7 @@ const SearchInput = React.forwardRef<InputRef, SearchInputProps>((props, ref) =>
   };
 
   const searchBtn = loading ? (
-    <LoadingIcon existIcon={true} prefixCls={prefixCls} loading={loading} />
+    <LoadingIcon existIcon prefixCls={prefixCls} loading={loading} />
   ) : (
     <SearchOutlined
       className={classNames(`${prefixCls}-suffix-icon`, {
