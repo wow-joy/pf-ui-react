@@ -18,6 +18,7 @@ import genSorterStyle from './sorter';
 import genStickyStyle from './sticky';
 import genSummaryStyle from './summary';
 import cssVariables from '../../theme/cssVariables';
+import { getWebkitScrollbarStyle, defaultScrollbarToken } from '../../style/scrollbar';
 
 export interface ComponentToken {}
 
@@ -100,6 +101,10 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
       maxWidth: '100%',
       ...clearFix(),
 
+      '*': {
+        ...getWebkitScrollbarStyle(),
+      },
+
       [componentCls]: {
         ...resetComponent(token),
         fontSize: tableFontSize,
@@ -125,6 +130,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         position: 'relative',
         padding: `${paddingContentVerticalLG}px ${tablePaddingHorizontal}px`,
         overflowWrap: 'break-word',
+        borderBottom: tableBorder,
       },
 
       // ============================ Title =============================
@@ -214,13 +220,13 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
             },
           },
         },
-        'tr:last-child': {
-          // background: 'pink',
-          borderBottom: tableBorder,
-          '> td': {
-            borderBottom: tableBorder,
-          },
-        },
+        // 'tr:last-child': {
+        //   // background: 'pink',
+        //   borderBottom: 0,
+        //   '> td': {
+        //     borderBottom: 0,
+        //   },
+        // },
       },
 
       // ============================ Footer ============================
@@ -232,7 +238,24 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
 
       [`.table-striped`]: {
         background: cssVariables.WjC6,
-        boxShadow: `0px 1px 0px 0px #eeeeee`,
+      },
+    },
+    // 仅在y轴滚动时在表格底部加一个边框
+    [`${componentCls}-wrapper-scroll-y-only`]: {
+      [`${componentCls}-container`]: {
+        position: 'relative',
+
+        [`${componentCls}-body`]: {
+          '&::after': {
+            position: 'absolute',
+            content: '""',
+            bottom: 0,
+            height: lineWidth,
+            left: 0,
+            right: defaultScrollbarToken.scrollbarWidth,
+            backgroundColor: tableBorderColor,
+          },
+        },
       },
     },
   };
@@ -285,14 +308,14 @@ export default genComponentStyleHook('Table', (token) => {
     tableBg: colorBgContainer,
     tableRadius: 0,
 
-    paddingContentVerticalLG: 8,
+    paddingContentVerticalLG: 4.5,
     tablePaddingVertical: 10,
     tablePaddingHorizontal: 20,
     tablePaddingVerticalMiddle: 8,
     tablePaddingHorizontalMiddle: 10,
     tablePaddingVerticalSmall: paddingXS,
     tablePaddingHorizontalSmall: paddingXS,
-    tableBorderColor: cssVariables.WjC14,
+    tableBorderColor: cssVariables.WjC5,
     tableHeaderTextColor: colorTextHeading,
     tableHeaderBg: cssVariables.WjD7,
     tableFooterTextColor: colorTextHeading,
@@ -334,10 +357,6 @@ export default genComponentStyleHook('Table', (token) => {
     tableScrollThumbBg: colorTextPlaceholder,
     tableScrollThumbBgHover: colorTextHeading,
     tableScrollBg: colorSplit,
-
-    //
-    fontSize: 1,
-    lineHeight: 1,
   });
 
   return [

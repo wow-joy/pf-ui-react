@@ -19,7 +19,7 @@ const genBaseStyle: GenerateStyle<TreeSelectToken> = (token) => {
     {
       [`${componentCls}-dropdown`]: [
         {
-          padding: `${token.paddingXS}px ${token.paddingXS / 2}px`,
+          padding: `${token.paddingXS}px 0px`,
         },
 
         // ====================== Tree ======================
@@ -34,6 +34,7 @@ const genBaseStyle: GenerateStyle<TreeSelectToken> = (token) => {
               alignItems: 'stretch',
 
               [`${treeCls}-treenode`]: {
+                width: '100%',
                 [`${treeCls}-node-content-wrapper`]: {
                   flex: 'auto',
                 },

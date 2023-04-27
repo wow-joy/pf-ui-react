@@ -526,6 +526,8 @@ function InternalTable<RecordType extends object = any>(
     `${prefixCls}-wrapper`,
     {
       [`${prefixCls}-wrapper-rtl`]: direction === 'rtl',
+      [`${prefixCls}-wrapper-scroll-y-only`]:
+        tableProps.scroll && tableProps.scroll.y && !tableProps.scroll.x,
     },
     className,
     rootClassName,

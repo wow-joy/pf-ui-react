@@ -31,9 +31,7 @@ const columns: ColumnsType<DataType> = [
       showTitle: false,
     },
     render: (address) => (
-      <Tooltip placement="topLeft" title={address}>
-        {address}
-      </Tooltip>
+      <Tooltip.TooltipEllipsis title={address}>{address}</Tooltip.TooltipEllipsis>
     ),
   },
   {
@@ -44,9 +42,7 @@ const columns: ColumnsType<DataType> = [
       showTitle: false,
     },
     render: (address) => (
-      <Tooltip placement="topLeft" title={address}>
-        {address}
-      </Tooltip>
+      <Tooltip.TooltipEllipsis title={address}>{address}</Tooltip.TooltipEllipsis>
     ),
   },
   {
@@ -57,9 +53,7 @@ const columns: ColumnsType<DataType> = [
       showTitle: false,
     },
     render: (address) => (
-      <Tooltip placement="topLeft" title={address}>
-        {address}
-      </Tooltip>
+      <Tooltip.TooltipEllipsis title={address}>{address}</Tooltip.TooltipEllipsis>
     ),
   },
   {
@@ -70,9 +64,7 @@ const columns: ColumnsType<DataType> = [
       showTitle: false,
     },
     render: (address) => (
-      <Tooltip placement="topLeft" title={address}>
-        {address}
-      </Tooltip>
+      <Tooltip.TooltipEllipsis title={address}>{address}</Tooltip.TooltipEllipsis>
     ),
   },
 ];

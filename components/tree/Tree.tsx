@@ -164,7 +164,7 @@ const Tree = React.forwardRef<RcTree, TreeProps>((props, ref) => {
     showIcon = false,
     showLine,
     switcherIcon,
-    blockNode = false,
+    blockNode = true,
     children,
     checkable = false,
     selectable = true,

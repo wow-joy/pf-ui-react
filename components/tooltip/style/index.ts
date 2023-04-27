@@ -1,8 +1,10 @@
 import { initZoomMotion } from '../../style/motion';
 import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
+import type { CSSInterpolation } from '@ant-design/cssinjs';
 import { genPresetColor, resetComponent } from '../../style';
 import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '../../style/placementArrow';
+import cssVariables from '../../theme/cssVariables';
 
 export interface ComponentToken {
   zIndexPopup: number;
@@ -17,6 +19,54 @@ interface TooltipToken extends FullToken<'Tooltip'> {
   tooltipBorderRadius: number;
   tooltipRadiusOuter: number;
 }
+
+const themeMap: Record<
+  string,
+  {
+    backgroundColor?: string;
+    color?: string;
+  }
+> = {
+  white: {
+    backgroundColor: cssVariables.WjC1,
+    color: cssVariables.WjE1,
+  },
+};
+
+const getTooltipThemeStyle = (token: TooltipToken) => {
+  const {
+    componentCls, // ant-tooltip
+  } = token;
+  const themeCls = `${componentCls}-theme`;
+
+  return [
+    {
+      [`${themeCls}-white`]: {
+        [`${componentCls}-inner`]: {
+          ...themeMap.white,
+        },
+        [`${componentCls}-arrow`]: {
+          '--antd-arrow-background-color': themeMap.white.backgroundColor,
+        },
+      },
+    },
+  ];
+};
+
+const getTooltipEllipsisStyle = (token: TooltipToken): CSSInterpolation => {
+  const {
+    componentCls, // ant-tooltip
+  } = token;
+
+  return {
+    [`${componentCls}-ellipsis-container`]: {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      wordBreak: 'keep-all',
+    },
+  };
+};
 
 const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
   const {
@@ -112,6 +162,9 @@ const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
       },
     ),
 
+    // theme color
+    ...getTooltipThemeStyle(token),
+
     // Pure Render
     {
       [`${componentCls}-pure`]: {
@@ -119,6 +172,9 @@ const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
         maxWidth: 'none',
       },
     },
+
+    // ellipsis
+    getTooltipEllipsisStyle(token),
   ];
 };
 

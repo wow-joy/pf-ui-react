@@ -102,7 +102,7 @@
     "@ant-design/react-slick": "~1.0.0",
     "@babel/runtime": "^7.18.3",
     "@ctrl/tinycolor": "^3.6.0",
-    "@pf-ui/pf-icons-react": "1.1.30",
+    "@pf-ui/pf-icons-react": "^1.1.37",
     "@rc-component/mutate-observer": "^1.0.0",
     "@rc-component/tour": "~1.6.0",
     "classnames": "^2.2.6",

@@ -904,8 +904,9 @@ const genTextAreaStyle: GenerateStyle<InputToken> = (token) => {
           color: token.colorTextDescription,
           whiteSpace: 'nowrap',
           pointerEvents: 'none',
-          float: 'right',
-          marginBottom: -token.fontSize * token.lineHeight,
+          position: 'absolute',
+          bottom: 4,
+          right: 8,
         },
 
         '&-rtl': {

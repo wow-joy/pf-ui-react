@@ -72,6 +72,8 @@ interface LegacyTooltipProps
   afterVisibleChange?: RcTooltipProps['afterVisibleChange'];
 }
 
+export type TooltipTheme = 'white';
+
 export interface AbstractTooltipProps extends LegacyTooltipProps {
   style?: React.CSSProperties;
   className?: string;
@@ -86,6 +88,7 @@ export interface AbstractTooltipProps extends LegacyTooltipProps {
   autoAdjustOverflow?: boolean | AdjustOverflow;
   getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
   children?: React.ReactNode;
+  theme?: TooltipTheme;
 }
 
 export type RenderFunction = () => React.ReactNode;
@@ -177,6 +180,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     afterOpenChange,
     afterVisibleChange,
     arrow = true,
+    theme,
   } = props;
 
   const mergedShowArrow = !!arrow;
@@ -324,6 +328,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     overlayClassName,
     {
       [`${prefixCls}-rtl`]: direction === 'rtl',
+      [`${prefixCls}-theme-${theme}`]: !!theme,
     },
     colorInfo.className,
     rootClassName,
@@ -365,12 +370,36 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
   React.PropsWithoutRef<TooltipProps> & React.RefAttributes<unknown>
 > & {
   _InternalPanelDoNotUseOrYouWillBeFired: typeof PurePanel;
+  TooltipEllipsis: typeof TooltipEllipsis;
 };
+
+const TooltipEllipsis = React.forwardRef<unknown, TooltipProps>((props, ref) => {
+  const { prefixCls: customizePrefixCls, children } = props;
+
+  const { getPrefixCls } = React.useContext(ConfigContext);
+
+  const injectFromPopover = (props as any)['data-popover-inject'];
+
+  const prefixCls = getPrefixCls('tooltip', customizePrefixCls);
+
+  // Style
+  const [wrapSSR, hashId] = useStyle(prefixCls, !injectFromPopover);
+  const containerClassName = classNames(`${prefixCls}-ellipsis-container`, hashId);
+
+  return wrapSSR(
+    <Tooltip placement="top" {...props} ref={ref} theme="white">
+      <div className={containerClassName}>{children}</div>
+    </Tooltip>,
+  );
+}) as React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<TooltipProps> & React.RefAttributes<unknown>
+>;
 
 if (process.env.NODE_ENV !== 'production') {
   Tooltip.displayName = 'Tooltip';
 }
 
 Tooltip._InternalPanelDoNotUseOrYouWillBeFired = PurePanel;
+Tooltip.TooltipEllipsis = TooltipEllipsis;
 
 export default Tooltip;

@@ -1,6 +1,5 @@
-import FileOutlined from '@ant-design/icons/FileOutlined';
-import FolderOpenOutlined from '@ant-design/icons/FolderOpenOutlined';
-import FolderOutlined from '@ant-design/icons/FolderOutlined';
+import FolderClosedTwoTone from '@pf-ui/pf-icons-react/FolderClosedTwoTone';
+import FoldersopeningTwoTone from '@pf-ui/pf-icons-react/FoldersopeningTwoTone';
 import classNames from 'classnames';
 import type RcTree from 'rc-tree';
 import type { BasicDataNode } from 'rc-tree';
@@ -34,9 +33,9 @@ export interface DirectoryTreeState {
 function getIcon(props: AntdTreeNodeAttribute): React.ReactNode {
   const { isLeaf, expanded } = props;
   if (isLeaf) {
-    return <FileOutlined />;
+    return <FolderClosedTwoTone />;
   }
-  return expanded ? <FolderOpenOutlined /> : <FolderOutlined />;
+  return expanded ? <FoldersopeningTwoTone /> : <FolderClosedTwoTone />;
 }
 
 function getTreeData({ treeData, children }: DirectoryTreeProps) {
