@@ -23,7 +23,6 @@ export const getWebkitScrollbarStyle = (_token?: ScrollbarToken) => {
     ...defaultScrollbarToken,
     ..._token,
   };
-  console.log('token.borderRadius', token.borderRadius);
 
   return {
     '&::-webkit-scrollbar-track': {

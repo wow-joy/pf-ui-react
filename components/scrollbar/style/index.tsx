@@ -49,6 +49,6 @@ const genScrollbarStyle: GenerateStyle<ScrollbarToken> = (token: ScrollbarToken)
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Scrollbar', (token) => {
-  return [genScrollbarStyle(token as ScrollbarToken)];
-});
+export default genComponentStyleHook('Scrollbar', (token) => [
+  genScrollbarStyle(token as ScrollbarToken),
+]);

@@ -1,7 +1,7 @@
+import type { CSSInterpolation } from '@ant-design/cssinjs';
 import { initZoomMotion } from '../../style/motion';
 import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
-import type { CSSInterpolation } from '@ant-design/cssinjs';
 import { genPresetColor, resetComponent } from '../../style';
 import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '../../style/placementArrow';
 import cssVariables from '../../theme/cssVariables';

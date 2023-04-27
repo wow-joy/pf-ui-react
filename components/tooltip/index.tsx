@@ -180,7 +180,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     afterOpenChange,
     afterVisibleChange,
     arrow = true,
-    theme,
+    theme: tooltipTheme,
   } = props;
 
   const mergedShowArrow = !!arrow;
@@ -328,7 +328,7 @@ const Tooltip = React.forwardRef<unknown, TooltipProps>((props, ref) => {
     overlayClassName,
     {
       [`${prefixCls}-rtl`]: direction === 'rtl',
-      [`${prefixCls}-theme-${theme}`]: !!theme,
+      [`${prefixCls}-theme-${tooltipTheme}`]: !!tooltipTheme,
     },
     colorInfo.className,
     rootClassName,

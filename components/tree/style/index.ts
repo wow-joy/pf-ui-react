@@ -431,7 +431,7 @@ export const genBaseStyle = (prefixCls: string, token: TreeToken): CSSObject => 
 
 // ============================ Directory =============================
 export const genDirectoryStyle = (token: TreeToken): CSSObject => {
-  const { treeCls, treeNodeCls, treeNodePadding } = token;
+  const { treeCls, treeNodeCls } = token;
 
   return {
     [`${treeCls}${treeCls}-directory`]: {
