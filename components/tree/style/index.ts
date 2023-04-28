@@ -352,6 +352,7 @@ export const genBaseStyle = (prefixCls: string, token: TreeToken): CSSObject => 
           marginRight: 8,
           textAlign: 'center',
           verticalAlign: 'top',
+          fontSize: token.fontSizeLG,
 
           '&:empty': {
             display: 'none',
@@ -523,7 +524,7 @@ export const genTreeStyle = (prefixCls: string, token: DerivativeToken): CSSInte
     controlItemBgHover: cssVariables.WjD6,
     controlItemBgSelected: cssVariables.WjD6,
     controlItemColorSelected: cssVariables.colorPrimaryHover,
-    colorText: cssVariables.WjE1,
+    fontSize: token.fontSizeSM,
   });
 
   return [
@@ -539,6 +540,10 @@ export default genComponentStyleHook('Tree', (token, { prefixCls }) => [
   {
     [token.componentCls]: getCheckboxStyle(`${prefixCls}-checkbox`, token),
   },
-  genTreeStyle(prefixCls, token),
+  genTreeStyle(prefixCls, {
+    ...token,
+    // 为了treeSelect传入的colorText能生效
+    colorText: cssVariables.WjE1,
+  }),
   genCollapseMotion(token),
 ]);

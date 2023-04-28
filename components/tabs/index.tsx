@@ -1,4 +1,5 @@
-import CloseOutlined from '@ant-design/icons/CloseOutlined';
+// import CloseOutlined from '@ant-design/icons/CloseOutlined';
+import CloseFilled from '@pf-ui/pf-icons-react/CloseFilled';
 import EllipsisOutlined from '@ant-design/icons/EllipsisOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import classNames from 'classnames';
@@ -58,7 +59,7 @@ function Tabs({
       onEdit: (editType, { key, event }) => {
         onEdit?.(editType === 'add' ? event : key!, editType);
       },
-      removeIcon: <CloseOutlined />,
+      removeIcon: <CloseFilled />,
       addIcon: addIcon || <PlusOutlined />,
       showAdd: hideAdd !== true,
     };

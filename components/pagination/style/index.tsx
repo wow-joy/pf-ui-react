@@ -282,7 +282,7 @@ const genPaginationSimpleStyle: GenerateStyle<PaginationToken, CSSObject> = (tok
 };
 
 const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token;
+  const { componentCls, antCls } = token;
 
   return {
     [`${componentCls}-jump-prev, ${componentCls}-jump-next`]: {
@@ -422,6 +422,15 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
       marginInlineStart: token.margin,
       verticalAlign: 'middle',
 
+      [`${antCls}-select-selector`]: {
+        fontSize: `${token.fontSizeSM}px !important`,
+        color: `${cssVariables.WjE3} !important`,
+      },
+      [`${antCls}-select-item`]: {
+        fontSize: `${token.fontSizeSM}px !important`,
+        lineHeight: '22px',
+      },
+
       '&-size-changer.-select': {
         display: 'inline-block',
         width: 'auto',
@@ -450,6 +459,8 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
           margin: 0,
           marginInlineStart: token.marginXS,
           marginInlineEnd: token.marginXS,
+          color: cssVariables.WjE4,
+          textAlign: 'center',
         },
 
         '&-btn': {

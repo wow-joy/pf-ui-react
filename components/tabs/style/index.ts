@@ -3,6 +3,7 @@ import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 import { genFocusStyle, resetComponent, textEllipsis } from '../../style';
 import genMotionStyle from './motion';
+import cssVariables from '../../theme/cssVariables';
 
 export interface ComponentToken {
   zIndexPopup: number;
@@ -559,8 +560,8 @@ const genTabStyle: GenerateStyle<TabsToken, CSSObject> = (token: TabsToken) => {
           _skip_check_: true,
           value: token.marginXS,
         },
-        color: token.colorTextDescription,
-        fontSize: token.fontSizeSM,
+        color: cssVariables.WjE4,
+        fontSize: token.fontSizeSM - 2,
         background: 'transparent',
         border: 'none',
         outline: 'none',

@@ -100,6 +100,7 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
           cursor: 'pointer',
           transition: `background ${token.motionDurationSlow} ease`,
           borderRadius: token.borderRadiusSM,
+          color: token.optionItemColor,
 
           // =========== Group ============
           '&-group': {
@@ -126,9 +127,9 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
             },
 
             [`&-selected:not(${selectItemCls}-option-disabled)`]: {
-              color: token.colorText,
+              color: token.optionItemSelectedColor,
               // fontWeight: token.fontWeightStrong,
-              backgroundColor: cssVariables.WjD6,
+              backgroundColor: 'transparent !important',
 
               [`${selectItemCls}-option-state`]: {
                 color: token.colorPrimary,

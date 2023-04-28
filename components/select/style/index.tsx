@@ -15,6 +15,8 @@ export interface ComponentToken {
 export interface SelectToken extends FullToken<'Select'> {
   rootPrefixCls: string;
   inputPaddingHorizontalBase: number;
+  optionItemColor: string;
+  optionItemSelectedColor: string;
 }
 
 // ============================= Selector =============================
@@ -341,6 +343,9 @@ export default genComponentStyleHook(
     const selectToken: SelectToken = mergeToken<SelectToken>(token, {
       rootPrefixCls,
       inputPaddingHorizontalBase: token.paddingSM - 1,
+      optionItemColor: cssVariables.WjE2,
+      optionItemSelectedColor: cssVariables.colorPrimary,
+      colorText: cssVariables.WjE1,
     });
     return [genSelectStyle(selectToken)];
   },

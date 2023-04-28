@@ -1,3 +1,4 @@
+import cssVariables from 'antd/es/theme/cssVariables';
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
 import type { AliasToken, FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
@@ -18,14 +19,13 @@ const genBaseStyle: GenerateStyle<TreeSelectToken> = (token) => {
     // ======================================================
     {
       [`${componentCls}-dropdown`]: [
-        {
-          padding: `${token.paddingXS}px 0px`,
-        },
-
         // ====================== Tree ======================
         genTreeStyle(
           treePrefixCls,
-          mergeToken<AliasToken>(token, { colorBgContainer: colorBgElevated }),
+          mergeToken<AliasToken>(token, {
+            colorBgContainer: colorBgElevated,
+            colorText: cssVariables.WjE2,
+          }),
         ),
         {
           [treeCls]: {

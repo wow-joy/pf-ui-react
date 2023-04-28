@@ -110,6 +110,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         fontSize: tableFontSize,
         background: tableBg,
         borderRadius: `${tableRadius}px ${tableRadius}px 0 0`,
+        lineHeight: '22px',
       },
       // https://github.com/ant-design/ant-design/issues/17611
       table: {
@@ -270,7 +271,7 @@ export default genComponentStyleHook('Table', (token) => {
     colorTextHeading,
     colorSplit,
     colorBorderSecondary,
-    fontSize,
+    fontSizeSM,
     // padding,
     paddingXS,
     // paddingSM,
@@ -304,13 +305,13 @@ export default genComponentStyleHook('Table', (token) => {
     .toHexShortString();
 
   const tableToken = mergeToken<TableToken>(token, {
-    tableFontSize: fontSize,
+    tableFontSize: fontSizeSM,
     tableBg: colorBgContainer,
     tableRadius: 0,
 
     paddingContentVerticalLG: 4.5,
     tablePaddingVertical: 10,
-    tablePaddingHorizontal: 20,
+    tablePaddingHorizontal: 10,
     tablePaddingVerticalMiddle: 8,
     tablePaddingHorizontalMiddle: 10,
     tablePaddingVerticalSmall: paddingXS,
@@ -340,8 +341,8 @@ export default genComponentStyleHook('Table', (token) => {
     tableSelectedRowHoverBg: cssVariables.WjD6,
     zIndexTableFixed,
     zIndexTableSticky: zIndexTableFixed + 1,
-    tableFontSizeMiddle: fontSize,
-    tableFontSizeSmall: fontSize,
+    tableFontSizeMiddle: fontSizeSM,
+    tableFontSizeSmall: fontSizeSM,
     tableSelectionColumnWidth: controlHeight,
     tableExpandIconBg: colorBgContainer,
     tableExpandColumnWidth: checkboxSize + 2 * token.padding,
