@@ -1,4 +1,4 @@
-import cssVariables from 'antd/es/theme/cssVariables';
+import cssVariables from '../../theme/cssVariables';
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
 import type { AliasToken, FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
