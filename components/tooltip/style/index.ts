@@ -64,6 +64,7 @@ const getTooltipEllipsisStyle = (token: TooltipToken): CSSInterpolation => {
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       wordBreak: 'keep-all',
+      fontSize: 'inherit',
     },
   };
 };

@@ -16,6 +16,7 @@ import type {
 import { getMotion, wrapPromiseFn } from './util';
 import warning from '../_util/warning';
 import { PureContent } from './PurePanel';
+import { defaultGlobalConfig } from './index';
 
 const DEFAULT_OFFSET = 8;
 const DEFAULT_DURATION = 3;
@@ -43,6 +44,7 @@ const Holder = React.forwardRef<HolderRef, HolderProps>((props, ref) => {
     transitionName,
     onAllRemoved,
   } = props;
+  console.log('holder', top);
   const { getPrefixCls, getPopupContainer } = React.useContext(ConfigContext);
 
   const prefixCls = staticPrefixCls || getPrefixCls('message');
@@ -212,8 +214,16 @@ export function useInternalMessage(
     return clone;
   }, []);
 
+  const mergedMessageConfig = {
+    ...defaultGlobalConfig,
+    ...messageConfig,
+  };
+
   // ============================== Return ===============================
-  return [wrapAPI, <Holder key="message-holder" {...messageConfig} ref={holderRef} />] as const;
+  return [
+    wrapAPI,
+    <Holder key="message-holder" {...mergedMessageConfig} ref={holderRef} />,
+  ] as const;
 }
 
 export default function useMessage(messageConfig?: ConfigOptions) {
