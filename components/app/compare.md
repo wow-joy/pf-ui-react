@@ -1,6 +1,7 @@
 ---
 category: Components
-group: Other
+subtitle: 包裹组件
+group: 其他
 title: App
 cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HJz8SZos2wgAAAAAAAAAAAAADrJ8AQ/original
 coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*oC92TK44Ex8AAAAAAAAAAAAADrJ8AQ/original
@@ -8,22 +9,23 @@ demo:
   cols: 2
 ---
 
-New App Component which provide global style & static function replacement.
+新的包裹组件，提供重置样式和提供消费上下文的默认环境。
 
-## When To Use
+## 何时使用
 
-Static function in React 18 concurrent mode will not well support. In v5, we recommend to use hooks for the static replacement. But it will make user manual work on define this.
+- 提供可消费 React context 的 `message.xxx`、`Modal.xxx`、`notification.xxx` 的静态方法，可以简化 useMessage 等方法需要手动植入 `contextHolder` 的问题。
+- 提供基于 `.ant-app` 的默认重置样式，解决原生元素没有 antd 规范样式的问题。
 
-## Examples
+## 代码演示
 
 <!-- prettier-ignore -->
-<code src="./demo/basic.tsx">basic</code>
+<code src="./demo/basic.tsx">基本用法</code>
 
-## How to use
+## 如何使用
 
-### Basic usage
+### 基础用法
 
-App provides upstream and downstream method calls through `Context`, because useApp needs to be used as a subcomponent, we recommend encapsulating App at the top level in the application.
+App 组件通过 `Context` 提供上下文方法调用，因而 useApp 需要作为子组件才能使用，我们推荐在应用中顶层包裹 App。
 
 ```tsx
 import { App } from 'antd';
@@ -48,11 +50,11 @@ const MyApp: React.FC = () => (
 export default MyApp;
 ```
 
-Note: App.useApp must be available under App.
+注意：App.useApp 必须在 App 之下方可使用。
 
-### Sequence with ConfigProvider
+### 与 ConfigProvider 先后顺序
 
-The App component can only use the token in the `ConfigProvider`, if you need to use the Token, the ConfigProvider and the App component must appear in pairs.
+App 组件只能在 `ConfigProvider` 之下才能使用 Design Token， 如果需要使用其样式重置能力，则 ConfigProvider 与 App 组件必须成对出现。
 
 ```tsx
 <ConfigProvider theme={{ ... }}>
@@ -62,7 +64,7 @@ The App component can only use the token in the `ConfigProvider`, if you need to
 </ConfigProvider>
 ```
 
-### Embedded usage scenarios (if not necessary, try not to do nesting)
+### 内嵌使用场景（如无必要，尽量不做嵌套）
 
 ```tsx
 <App>
@@ -73,7 +75,7 @@ The App component can only use the token in the `ConfigProvider`, if you need to
 </App>
 ```
 
-### Global scene (redux scene)
+### 全局场景（redux 场景）
 
 ```tsx
 // Entry component
@@ -122,7 +124,11 @@ export default () => {
 
 ### App
 
-| Property | Description | Type | Default | Version |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| message | Global config for Message | [MessageConfig](/components/message/#messageconfig) | - | 0.0.14 |
-| notification | Global config for Notification | [NotificationConfig](/components/notification/#notificationconfig) | - | 0.0.14 |
+| message | App 内 Message 的全局配置 | [MessageConfig](/components/message-cn/#messageconfig) | - | 5.3.0 |
+| notification | App 内 Notification 的全局配置 | [NotificationConfig](/components/notification-cn/#notificationconfig) | - | 5.3.0 |
+
+## Design Token
+
+<ComponentTokenTable component="App"></ComponentTokenTable>

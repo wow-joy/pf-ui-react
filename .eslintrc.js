@@ -33,7 +33,6 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
         'no-unused-expressions': 'off',
-        'import/no-mutable-exports': 'off',
         '@typescript-eslint/no-unused-expressions': 2,
         '@typescript-eslint/consistent-type-imports': [2, { disallowTypeAnnotations: false }],
       },

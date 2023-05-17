@@ -54,7 +54,7 @@ type Task =
 
 let taskQueue: Task[] = [];
 
-export let defaultGlobalConfig: ConfigOptions = {};
+let defaultGlobalConfig: ConfigOptions = {};
 
 function getGlobalContext() {
   const {
