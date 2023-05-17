@@ -84,6 +84,7 @@ import locale from 'antd/locale/zh_CN';
 | bordered | 是否有边框 | boolean | true |  |
 | className | 选择器 className | string | - |  |
 | dateRender | 自定义日期单元格的内容 | function(currentDate: dayjs, today: dayjs) => React.ReactNode | - |  |
+| changeOnBlur | 失去焦点时触发 `change` 事件，例如 datetime 下不再需要点击确认按钮 | boolean | false | 0.0.14 |
 | disabled | 禁用 | boolean | false |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |
 | popupClassName | 额外的弹出日历 className | string | - | 4.23.0 |

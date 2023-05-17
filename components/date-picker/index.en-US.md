@@ -83,6 +83,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | bordered | Whether has border style | boolean | true |  |
 | className | The picker className | string | - |  |
 | dateRender | Custom rendering function for date cells | function(currentDate: dayjs, today: dayjs) => React.ReactNode | - |  |
+| changeOnBlur | Trigger `change` when blur. e.g. datetime picker no need click confirm button | boolean | false | 0.0.14 |
 | disabled | Determine whether the DatePicker is disabled | boolean | false |  |
 | disabledDate | Specify the date that cannot be selected | (currentDate: dayjs) => boolean | - |  |
 | popupClassName | To customize the className of the popup calendar | string | - | 4.23.0 |
