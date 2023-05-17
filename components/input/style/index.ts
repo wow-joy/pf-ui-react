@@ -979,6 +979,7 @@ const customToken = {
   fontSizeIcon: 16,
   inputPaddingHorizontal: 9,
   clearIconColor: `rgba(0, 0, 0, 0.3)`,
+  colorTextPlaceholder: cssVariables.WjE4,
 };
 
 // ============================== Export ==============================
