@@ -94,8 +94,8 @@ function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
         marginTop: FIXED_ITEM_MARGIN,
         marginBottom: FIXED_ITEM_MARGIN,
         lineHeight: `${selectItemHeight - token.lineWidth * 2}px`,
-        background: token.colorFillSecondary,
-        border: `${token.lineWidth}px solid ${token.colorSplit}`,
+        background: token.multipleItemBgColor,
+        border: `${token.lineWidth}px solid ${token.multipleItemBorderColor}`,
         borderRadius: token.borderRadiusSM,
         cursor: 'default',
         transition: `font-size ${token.motionDurationSlow}, line-height ${token.motionDurationSlow}, height ${token.motionDurationSlow}`,
@@ -122,12 +122,13 @@ function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
         '&-remove': {
           ...resetIcon(),
 
-          display: 'inline-block',
+          display: 'inline-flex',
           color: token.colorIcon,
           fontWeight: 'bold',
-          fontSize: 10,
+          fontSize: 8,
           lineHeight: 'inherit',
           cursor: 'pointer',
+          marginInline: 3,
 
           [`> ${iconCls}`]: {
             verticalAlign: '-0.2em',

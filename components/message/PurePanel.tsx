@@ -1,9 +1,9 @@
 import * as React from 'react';
-import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
-import ExclamationCircleFilled from '@ant-design/icons/ExclamationCircleFilled';
-import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
-import CheckCircleFilled from '@ant-design/icons/CheckCircleFilled';
-import InfoCircleFilled from '@ant-design/icons/InfoCircleFilled';
+import InfoOutlined from '@pf-ui/pf-icons-react/InfoOutlined';
+import SuccessOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
+import ErrorOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
+import AlertOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
+import LoadingFilled from '@pf-ui/pf-icons-react/LoadingFilled';
 import { Notice } from 'rc-notification';
 import classNames from 'classnames';
 import type { NoticeProps } from 'rc-notification/lib/Notice';
@@ -12,11 +12,11 @@ import { ConfigContext } from '../config-provider';
 import type { NoticeType } from './interface';
 
 export const TypeIcon = {
-  info: <InfoCircleFilled />,
-  success: <CheckCircleFilled />,
-  error: <CloseCircleFilled />,
-  warning: <ExclamationCircleFilled />,
-  loading: <LoadingOutlined />,
+  info: <InfoOutlined />,
+  success: <SuccessOutlined />,
+  error: <ErrorOutlined />,
+  warning: <AlertOutlined />,
+  loading: <LoadingFilled />,
 };
 
 export interface PureContentProps {

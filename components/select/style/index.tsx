@@ -17,6 +17,8 @@ export interface SelectToken extends FullToken<'Select'> {
   inputPaddingHorizontalBase: number;
   optionItemColor: string;
   optionItemSelectedColor: string;
+  multipleItemBgColor: string;
+  multipleItemBorderColor: string;
 }
 
 // ============================= Selector =============================
@@ -346,6 +348,8 @@ export default genComponentStyleHook(
       optionItemColor: cssVariables.WjE2,
       optionItemSelectedColor: cssVariables.colorPrimary,
       colorText: cssVariables.WjE1,
+      multipleItemBgColor: cssVariables.WjC6,
+      multipleItemBorderColor: cssVariables.WjC11,
     });
     return [genSelectStyle(selectToken)];
   },

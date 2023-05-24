@@ -1,7 +1,6 @@
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import CloseCircleFilled from '@ant-design/icons/CloseCircleFilled';
-import CloseOutlined from '@ant-design/icons/CloseOutlined';
-// import DownOutlined from '@ant-design/icons/DownOutlined';
+import CloseFilled from '@pf-ui/pf-icons-react/CloseFilled';
 import ArrowDownFilled from '@pf-ui/pf-icons-react/ArrowDownFilled';
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
@@ -74,7 +73,7 @@ export default function getIcons({
   if (removeIcon !== undefined) {
     mergedRemoveIcon = removeIcon;
   } else {
-    mergedRemoveIcon = <CloseOutlined />;
+    mergedRemoveIcon = <CloseFilled />;
   }
 
   return {

@@ -3,6 +3,8 @@ import { Keyframes } from '@ant-design/cssinjs';
 import type { FullToken, GenerateStyle } from '../../theme/internal';
 import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 import { resetComponent } from '../../style';
+import { baseColor } from '../../theme/cssVariables';
+import { getAlphaColor } from '../../theme/themes/dark/colorAlgorithm';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -14,6 +16,11 @@ export interface ComponentToken {
 interface MessageToken extends FullToken<'Message'> {
   // Custom token here
   messageNoticeContentPadding: string;
+  messageIconMargin: number;
+  bgColorInfo: string;
+  bgColorSuccess: string;
+  bgColorError: string;
+  bgColorWarning: string;
 }
 
 const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
@@ -22,11 +29,8 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
     iconCls,
     boxShadow,
     colorBgElevated,
-    colorSuccess,
-    colorError,
-    colorWarning,
-    colorInfo,
-    fontSizeLG,
+    colorBgBase,
+    fontSizeXL,
     motionEaseInOutCirc,
     motionDurationSlow,
     marginXS,
@@ -35,6 +39,11 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
     zIndexPopup,
     // Custom token
     messageNoticeContentPadding,
+    messageIconMargin,
+    bgColorInfo,
+    bgColorSuccess,
+    bgColorError,
+    bgColorWarning,
   } = token;
 
   const messageMoveIn = new Keyframes('MessageMoveIn', {
@@ -117,10 +126,15 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
         padding: paddingXS,
         textAlign: 'center',
 
-        [`${componentCls}-custom-content > ${iconCls}`]: {
-          verticalAlign: 'text-bottom',
-          marginInlineEnd: marginXS, // affected by ltr or rtl
-          fontSize: fontSizeLG,
+        [`${componentCls}-custom-content`]: {
+          lineHeight: `${fontSizeXL}px`,
+          display: 'flex',
+
+          [`& > ${iconCls}`]: {
+            verticalAlign: 'text-bottom',
+            marginInlineEnd: messageIconMargin, // affected by ltr or rtl
+            fontSize: fontSizeXL,
+          },
         },
 
         [`${componentCls}-notice-content`]: {
@@ -130,21 +144,25 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
           borderRadius: borderRadiusLG,
           boxShadow,
           pointerEvents: 'all',
+          color: colorBgBase,
         },
 
-        [`${componentCls}-success > ${iconCls}`]: {
-          color: colorSuccess,
-        },
-        [`${componentCls}-error > ${iconCls}`]: {
-          color: colorError,
-        },
-        [`${componentCls}-warning > ${iconCls}`]: {
-          color: colorWarning,
-        },
         [`
-        ${componentCls}-info > ${iconCls},
-        ${componentCls}-loading > ${iconCls}`]: {
-          color: colorInfo,
+        &-info > ${componentCls}-notice-content,
+        &-loading > ${componentCls}-notice-content`]: {
+          background: bgColorInfo,
+        },
+
+        [`&-success > ${componentCls}-notice-content`]: {
+          background: bgColorSuccess,
+        },
+
+        [`&-error > ${componentCls}-notice-content`]: {
+          background: bgColorError,
+        },
+
+        [`&-warning > ${componentCls}-notice-content`]: {
+          background: bgColorWarning,
         },
       },
     },
@@ -165,9 +183,13 @@ export default genComponentStyleHook(
   (token) => {
     // Gen-style functions here
     const combinedToken = mergeToken<MessageToken>(token, {
-      messageNoticeContentPadding: `${
-        (token.controlHeightLG - token.fontSize * token.lineHeight) / 2
-      }px ${token.paddingSM}px`,
+      messageNoticeContentPadding: '16px 30px',
+      messageIconMargin: 10,
+      bgColorInfo: getAlphaColor(baseColor['--wj-E4_1'], 0.95),
+      bgColorSuccess: getAlphaColor(baseColor['--wj-E3_1'], 0.95),
+      bgColorError: getAlphaColor(baseColor['--wj-A3_1'], 0.95),
+      bgColorWarning: getAlphaColor(baseColor['--wj-E2_1'], 0.95),
+      boxShadow: '0px 0px 4px 0px rgba(0,0,0,0.20)',
     });
     return [genMessageStyle(combinedToken)];
   },
