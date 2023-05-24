@@ -1,8 +1,8 @@
 import * as React from 'react';
 import InfoOutlined from '@pf-ui/pf-icons-react/InfoOutlined';
 import SuccessOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
-import ErrorOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
-import AlertOutlined from '@pf-ui/pf-icons-react/SuccessOutlined';
+import ErrorOutlined from '@pf-ui/pf-icons-react/ErrorOutlined';
+import AlertOutlined from '@pf-ui/pf-icons-react/AlertOutlined';
 import LoadingFilled from '@pf-ui/pf-icons-react/LoadingFilled';
 import { Notice } from 'rc-notification';
 import classNames from 'classnames';

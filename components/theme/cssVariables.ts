@@ -76,7 +76,7 @@ type BaseColor = typeof baseColor;
 type BaseColorKey = keyof BaseColor;
 
 const formatKey = (key: BaseColorKey) => {
-  const [_, __, _first, ...rest] = key.split('-');
+  const [_, __, _first, ...rest] = key.split('-'); // eslint-disable-line no-unused-vars, @typescript-eslint/no-unused-vars
   const first = _first
     .split('')
     .map((v, index) => (index ? v : v.toLocaleUpperCase()))
@@ -85,7 +85,7 @@ const formatKey = (key: BaseColorKey) => {
 };
 
 const getCssVariablesMap = (data: BaseColor) => {
-  let res = {} as FormatColorObj<BaseColor>;
+  const res = {} as FormatColorObj<BaseColor>;
   Object.entries(data).forEach(([key, value]) => {
     const _key = formatKey(key as BaseColorKey);
     res[_key] = cssVariables(key, value);
