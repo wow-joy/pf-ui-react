@@ -27,7 +27,6 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
       // 原来 &-image 没有父子结构，现在为了外层承担我们的hashId，改成父子结果
       [`${componentCls}-image`]: {
         height: token.emptyImgHeight,
-        marginBottom: marginXS,
         opacity: token.opacityImage,
         fontSize: 40,
 
@@ -64,7 +63,6 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
       },
 
       '&-small': {
-        marginBlock: marginXS,
         color: cssVariables.WjE3,
 
         [`${componentCls}-image`]: {
@@ -75,6 +73,7 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
         display: 'flex',
         justifyContent: 'center',
         lineHeight: '16px',
+        marginBlock: 32,
 
         [`${componentCls}-image`]: {
           lineHeight: '16px',

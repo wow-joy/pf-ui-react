@@ -1,7 +1,7 @@
 {
   "name": "@pf-ui/pf-ui-react",
-  "version": "0.0.14",
-  "description": "An enterprise-class UI design language and React components implementation",
+  "version": "0.0.15",
+  "description": "An enteprise-class UI design language and React components implementation",
   "title": "pf-ui-react",
   "keywords": [
     "ant",

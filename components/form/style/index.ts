@@ -279,6 +279,8 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
           '&-error': {
             color: token.colorError,
             height: token.extraLineHeight,
+            display: 'flex',
+            alignItems: 'center',
 
             svg: {
               fontSize: '16px',

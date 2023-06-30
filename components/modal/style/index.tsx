@@ -322,6 +322,10 @@ const genModalConfirmStyle: GenerateStyle<ModalToken> = (token) => {
         padding: token.modalConfirmBodyPadding,
       },
 
+      [`${componentCls}-close-x`]: {
+        fontSize: token.fontSizeSM,
+      },
+
       '&-rtl': {
         direction: 'rtl',
       },
