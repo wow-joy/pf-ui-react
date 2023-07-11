@@ -885,6 +885,7 @@ export default genComponentStyleHook(
       tabsActiveTextShadow: '0 0 0.25px currentcolor',
       tabsDropdownHeight: 200,
       tabsDropdownWidth: 120,
+      colorPrimary: cssVariables.colorPrimary,
     });
 
     return [
